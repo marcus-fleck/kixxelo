@@ -200,7 +200,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">Tischfußballverband Hamburg</span>
-      <span class="timestamp">Stand: 26.02.2026 18:03</span>
+      <span class="timestamp">Stand: 26.02.2026 18:30</span>
     </div>
   </header>
 
@@ -209,28 +209,28 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <div class="player-header">
     <h2>DANIELA SCHLANCKE</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #392</span>
-      <span class="badge badge-single">Einzel #89</span>
-      <span class="badge badge-double">Doppel #377</span>
+      <span class="badge badge-combined">Gesamt #313</span>
+      <span class="badge badge-single">Einzel #-</span>
+      <span class="badge badge-double">Doppel #313</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
       <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">883</div>
+      <div class="value" style="color:var(--accent)">898</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Einzel</div>
-      <div class="value" style="color:var(--accent2)">952</div>
+      <div class="value" style="color:var(--accent2)">1000</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">910</div>
+      <div class="value" style="color:var(--up)">898</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">49</div>
+      <div class="value" style="color:var(--text)">20</div>
     </div>
   </div>
 
@@ -243,14 +243,14 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:03</footer>
+  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:30</footer>
 </div>
 
 <script>
-const labels = ["17.11.2025", "01.12.2025", "01.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "02.01.2026", "02.01.2026", "02.01.2026", "02.01.2026", "02.01.2026", "02.01.2026", "05.01.2026", "05.01.2026", "08.01.2026", "08.01.2026", "08.01.2026", "08.01.2026", "08.01.2026", "08.01.2026", "08.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "20.02.2026", "20.02.2026", "20.02.2026", "20.02.2026", "20.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
-const combinedData = [1000, 988, 977, 962, 989, 977, 966, 976, 973, 964, 974, 961, 948, 958, 943, 933, 944, 934, 925, 937, 927, 940, 931, 946, 934, 947, 939, 950, 962, 976, 990, 986, 979, 969, 982, 971, 961, 947, 938, 927, 939, 925, 940, 937, 925, 937, 925, 912, 897];
-const singleData = [null, null, null, null, 1000, 988, 977, 987, null, 975, 985, null, null, null, 973, 962, 972, 961, 951, 963, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-const doubleData = [1000, 988, 977, 989, null, null, null, null, 1000, null, null, 989, 977, 987, null, null, null, null, null, null, 973, 985, 976, 988, 975, 987, 977, 988, 1000, 1012, 1026, 1022, 1014, 1004, 1016, 1005, 995, 981, 970, 959, 971, 957, 970, 968, 955, 967, 954, 940, 925];
+const labels = ["18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
+const combinedData = [1000, 1013, 1003, 992, 1003, 990, 1004, 999, 991, 980, 994, 983, 974, 961, 951, 940, 953, 939, 926, 912];
+const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const doubleData = [1000, 1013, 1003, 992, 1003, 990, 1004, 999, 991, 980, 994, 983, 974, 961, 951, 940, 953, 939, 926, 912];
 
 const chartDefaults = {
   responsive: true,

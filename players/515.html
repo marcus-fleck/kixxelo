@@ -200,7 +200,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">Tischfußballverband Hamburg</span>
-      <span class="timestamp">Stand: 26.02.2026 18:03</span>
+      <span class="timestamp">Stand: 26.02.2026 18:30</span>
     </div>
   </header>
 
@@ -209,28 +209,28 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <div class="player-header">
     <h2>ILJA PAVKOVIC</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #340</span>
-      <span class="badge badge-single">Einzel #28</span>
-      <span class="badge badge-double">Doppel #350</span>
+      <span class="badge badge-combined">Gesamt #246</span>
+      <span class="badge badge-single">Einzel #-</span>
+      <span class="badge badge-double">Doppel #246</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
       <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">942</div>
+      <div class="value" style="color:var(--accent)">956</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Einzel</div>
-      <div class="value" style="color:var(--accent2)">1012</div>
+      <div class="value" style="color:var(--accent2)">1000</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">930</div>
+      <div class="value" style="color:var(--up)">956</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">52</div>
+      <div class="value" style="color:var(--text)">48</div>
     </div>
   </div>
 
@@ -243,14 +243,14 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:03</footer>
+  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:30</footer>
 </div>
 
 <script>
-const labels = ["18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "06.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
-const combinedData = [1000, 987, 1000, 989, 977, 989, 1003, 991, 1002, 991, 978, 966, 976, 987, 1003, 990, 980, 988, 999, 985, 996, 1007, 1019, 1027, 1017, 1026, 1019, 1028, 1018, 1004, 993, 978, 988, 1002, 989, 982, 969, 964, 976, 966, 958, 972, 964, 976, 989, 979, 989, 979, 967, 953, 949, 955];
-const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1000, null, null, null, null, null, null, null, null, null, null, null];
-const doubleData = [1000, 987, 1000, 989, 977, 989, 1002, 991, 1001, 990, 978, 966, 976, 987, 1004, 991, 980, 989, 1000, 985, 997, 1007, 1019, 1027, 1017, 1026, 1018, 1028, 1018, 1004, 993, 978, 988, 1002, 989, 982, 969, 964, 977, 966, null, 958, 951, 963, 976, 966, 976, 967, 954, 941, 937, 943];
+const labels = ["18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "28.01.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "07.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
+const combinedData = [1000, 987, 1000, 989, 976, 989, 1002, 990, 1001, 990, 978, 967, 977, 988, 1005, 992, 981, 990, 1001, 987, 998, 1008, 1020, 1028, 1017, 1027, 1019, 1029, 1020, 1028, 1041, 1027, 1017, 1003, 997, 1008, 997, 988, 979, 991, 1004, 993, 1003, 994, 981, 967, 963, 969];
+const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const doubleData = [1000, 987, 1000, 989, 976, 989, 1002, 990, 1001, 990, 978, 967, 977, 988, 1005, 992, 981, 990, 1001, 987, 998, 1008, 1020, 1028, 1017, 1027, 1019, 1029, 1020, 1028, 1041, 1027, 1017, 1003, 997, 1008, 997, 988, 979, 991, 1004, 993, 1003, 994, 981, 967, 963, 969];
 
 const chartDefaults = {
   responsive: true,

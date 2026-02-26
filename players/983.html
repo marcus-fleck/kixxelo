@@ -200,7 +200,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">Tischfußballverband Hamburg</span>
-      <span class="timestamp">Stand: 26.02.2026 18:03</span>
+      <span class="timestamp">Stand: 26.02.2026 18:30</span>
     </div>
   </header>
 
@@ -209,16 +209,16 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <div class="player-header">
     <h2>JOSCHKA WAGNER</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #6</span>
+      <span class="badge badge-combined">Gesamt #3</span>
       <span class="badge badge-single">Einzel #-</span>
-      <span class="badge badge-double">Doppel #6</span>
+      <span class="badge badge-double">Doppel #3</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
       <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">1262</div>
+      <div class="value" style="color:var(--accent)">1259</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Einzel</div>
@@ -230,7 +230,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">73</div>
+      <div class="value" style="color:var(--text)">67</div>
     </div>
   </div>
 
@@ -243,14 +243,14 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:03</footer>
+  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:30</footer>
 </div>
 
 <script>
-const labels = ["19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
-const combinedData = [1000, 1012, 1024, 1036, 1046, 1034, 1047, 1058, 1068, 1056, 1068, 1078, 1091, 1103, 1089, 1099, 1084, 1095, 1085, 1098, 1110, 1121, 1107, 1115, 1125, 1132, 1139, 1147, 1156, 1165, 1153, 1164, 1151, 1165, 1153, 1161, 1171, 1185, 1196, 1202, 1209, 1198, 1183, 1196, 1205, 1213, 1225, 1211, 1218, 1224, 1213, 1221, 1210, 1198, 1207, 1213, 1224, 1210, 1220, 1232, 1244, 1253, 1262, 1248, 1255, 1260, 1273, 1284, 1290, 1276, 1261, 1270, 1275];
-const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-const doubleData = [1000, 1012, 1024, 1036, 1046, 1034, 1047, 1058, 1068, 1056, 1068, 1078, 1091, 1103, 1089, 1099, 1084, 1095, 1085, 1098, 1110, 1120, 1107, 1115, 1126, 1133, 1141, 1149, 1158, 1168, 1156, 1167, 1154, 1168, 1156, 1164, 1174, 1188, 1199, 1205, 1211, 1200, 1186, 1198, 1207, 1216, 1228, 1213, 1221, 1227, 1215, 1223, 1212, 1200, 1208, 1214, 1226, 1212, 1221, 1233, 1245, 1254, 1262, 1248, 1254, 1259, 1272, 1282, 1288, 1274, 1259, 1269, 1274];
+const labels = ["19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "17.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "05.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
+const combinedData = [1000, 1012, 1024, 1036, 1046, 1034, 1046, 1058, 1068, 1055, 1067, 1078, 1091, 1102, 1088, 1098, 1083, 1094, 1084, 1096, 1107, 1118, 1104, 1113, 1123, 1130, 1138, 1146, 1155, 1165, 1153, 1164, 1151, 1164, 1151, 1160, 1170, 1182, 1193, 1199, 1205, 1193, 1179, 1192, 1201, 1210, 1222, 1208, 1215, 1221, 1231, 1216, 1226, 1236, 1246, 1255, 1262, 1248, 1255, 1261, 1273, 1284, 1290, 1276, 1260, 1269, 1274];
+const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const doubleData = [1000, 1012, 1024, 1036, 1046, 1034, 1046, 1058, 1068, 1055, 1067, 1078, 1091, 1102, 1088, 1098, 1083, 1094, 1084, 1096, 1107, 1118, 1104, 1113, 1123, 1130, 1138, 1146, 1155, 1165, 1153, 1164, 1151, 1164, 1151, 1160, 1170, 1182, 1193, 1199, 1205, 1193, 1179, 1192, 1201, 1210, 1222, 1208, 1215, 1221, 1231, 1216, 1226, 1236, 1246, 1255, 1262, 1248, 1255, 1261, 1273, 1284, 1290, 1276, 1260, 1269, 1274];
 
 const chartDefaults = {
   responsive: true,

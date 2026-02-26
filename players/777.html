@@ -200,7 +200,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">Tischfußballverband Hamburg</span>
-      <span class="timestamp">Stand: 26.02.2026 18:03</span>
+      <span class="timestamp">Stand: 26.02.2026 18:30</span>
     </div>
   </header>
 
@@ -209,16 +209,16 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <div class="player-header">
     <h2>THORBEN HARMS</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #370</span>
+      <span class="badge badge-combined">Gesamt #296</span>
       <span class="badge badge-single">Einzel #-</span>
-      <span class="badge badge-double">Doppel #363</span>
+      <span class="badge badge-double">Doppel #296</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
       <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">916</div>
+      <div class="value" style="color:var(--accent)">919</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Einzel</div>
@@ -226,11 +226,11 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">916</div>
+      <div class="value" style="color:var(--up)">919</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">78</div>
+      <div class="value" style="color:var(--text)">68</div>
     </div>
   </div>
 
@@ -243,14 +243,14 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:03</footer>
+  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:30</footer>
 </div>
 
 <script>
-const labels = ["19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "21.11.2025", "21.11.2025", "21.11.2025", "21.11.2025", "21.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "10.12.2025", "10.12.2025", "10.12.2025", "10.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "24.01.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
-const combinedData = [1000, 1012, 1024, 1012, 1024, 1012, 1024, 1011, 1022, 1033, 1021, 1033, 1045, 1032, 1044, 1055, 1066, 1054, 1066, 1055, 1068, 1056, 1044, 1032, 1042, 1054, 1067, 1078, 1089, 1103, 1092, 1103, 1087, 1097, 1108, 1119, 1128, 1114, 1102, 1113, 1101, 1109, 1095, 1085, 1072, 1078, 1063, 1073, 1059, 1048, 1035, 1046, 1033, 1045, 1035, 1025, 1036, 1022, 1011, 1001, 1008, 1019, 1008, 995, 979, 968, 956, 945, 932, 945, 933, 946, 963, 954, 944, 928, 915, 925];
-const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
-const doubleData = [1000, 1012, 1024, 1012, 1024, 1012, 1024, 1011, 1022, 1033, 1021, 1033, 1045, 1032, 1044, 1055, 1066, 1054, 1066, 1055, 1068, 1056, 1044, 1032, 1042, 1054, 1067, 1078, 1089, 1103, 1092, 1103, 1088, 1098, 1108, 1119, 1129, 1115, 1103, 1113, 1101, 1109, 1096, 1085, 1072, 1079, 1063, 1074, 1060, 1048, 1035, 1046, 1033, 1045, 1035, 1024, 1035, 1022, 1011, 1001, 1008, 1018, 1008, 994, 979, 967, 956, 945, 932, 945, 933, 947, 963, 954, 944, 929, 915, 925];
+const labels = ["19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "19.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "22.11.2025", "26.11.2025", "26.11.2025", "26.11.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "03.12.2025", "10.12.2025", "10.12.2025", "10.12.2025", "10.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "18.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "30.12.2025", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "07.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "14.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "21.01.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "11.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "18.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026", "25.02.2026"];
+const combinedData = [1000, 1012, 1024, 1012, 1024, 1012, 1023, 1036, 1023, 1035, 1046, 1058, 1046, 1058, 1046, 1058, 1047, 1034, 1022, 1032, 1043, 1055, 1067, 1078, 1093, 1081, 1092, 1077, 1087, 1097, 1109, 1118, 1105, 1093, 1104, 1092, 1100, 1086, 1075, 1062, 1069, 1053, 1063, 1050, 1038, 1025, 1037, 1023, 1035, 1025, 1014, 1026, 1012, 1000, 985, 973, 961, 950, 937, 949, 936, 950, 966, 957, 947, 932, 918, 928];
+const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+const doubleData = [1000, 1012, 1024, 1012, 1024, 1012, 1023, 1036, 1023, 1035, 1046, 1058, 1046, 1058, 1046, 1058, 1047, 1034, 1022, 1032, 1043, 1055, 1067, 1078, 1093, 1081, 1092, 1077, 1087, 1097, 1109, 1118, 1105, 1093, 1104, 1092, 1100, 1086, 1075, 1062, 1069, 1053, 1063, 1050, 1038, 1025, 1037, 1023, 1035, 1025, 1014, 1026, 1012, 1000, 985, 973, 961, 950, 937, 949, 936, 950, 966, 957, 947, 932, 918, 928];
 
 const chartDefaults = {
   responsive: true,
