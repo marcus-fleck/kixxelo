@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generiert statische HTML-Seiten für die TFVHH ELO-Rangliste.
+Generiert statische HTML-Seiten für die KIXX ELO-Rangliste.
 Erzeugt: index.html und players/{id}.html für jeden Spieler mit ELO-Historie.
 """
 
@@ -362,7 +362,7 @@ index_html = f"""<!DOCTYPE html>
   <header>
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
-      <span class="sub">Tischfußballverband Hamburg</span>
+      <span class="sub">KIXX Hamburg</span>
       <span class="timestamp">Stand: {generated_at}</span>
     </div>
   </header>
@@ -524,7 +524,7 @@ for pid, elo_row in elo_all.items():
   <header>
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
-      <span class="sub">Tischfußballverband Hamburg</span>
+      <span class="sub">KIXX Hamburg</span>
       <span class="timestamp">Stand: {generated_at}</span>
     </div>
   </header>
