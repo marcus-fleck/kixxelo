@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generiert statische HTML-Seiten für die KIXX ELO-Rangliste.
+Generiert statische HTML-Seiten für die TFVHH ELO-Rangliste.
 Erzeugt: index.html und players/{id}.html für jeden Spieler mit ELO-Historie.
 """
 
@@ -235,6 +235,73 @@ def get_match_counts():
     """)
     return {r[0]: r[1] for r in cur.fetchall()}
 
+def get_recent_matches(player_id, limit=30):
+    cur.execute("""
+        SELECT
+            m.id, m.type, m.score1, m.score2,
+            m.p1, m.p2, m.p11, m.p22,
+            c.name as comp_name, c.year, c.month, c.day,
+            es.change as elo_change,
+            es.rating as elo_after
+        FROM played_matches pm
+        JOIN matches m ON m.id = pm.match_id
+        JOIN competitions c ON c.id = m.competition_id
+        JOIN elo_separate es ON es.played_match_id = pm.id
+        WHERE pm.player_id = ?
+        ORDER BY c.unixTimestamp DESC, m.position DESC
+        LIMIT ?
+    """, (player_id, limit))
+    rows = [dict(r) for r in cur.fetchall()]
+
+    # Alle Spieler-IDs die wir brauchen sammeln und in einem Rutsch laden
+    ids_needed = set()
+    for r in rows:
+        for col in ('p1', 'p2', 'p11', 'p22'):
+            if r[col]:
+                ids_needed.add(r[col])
+    if ids_needed:
+        placeholders = ','.join('?' * len(ids_needed))
+        cur.execute(f"SELECT id, firstName, lastName FROM players WHERE id IN ({placeholders})",
+                    list(ids_needed))
+        pmap = {r['id']: f"{r['firstName']} {r['lastName']}" for r in cur.fetchall()}
+    else:
+        pmap = {}
+
+    result = []
+    for r in rows:
+        pid = player_id
+        # War der Spieler auf Seite 1 oder 2?
+        on_side1 = (r['p1'] == pid or r['p11'] == pid)
+        won = (r['score1'] > r['score2']) if on_side1 else (r['score2'] > r['score1'])
+
+        if r['type'] == 1:  # Einzel
+            if on_side1:
+                partners, opponents = [], [pmap.get(r['p2'], '?')]
+            else:
+                partners, opponents = [], [pmap.get(r['p1'], '?')]
+        else:  # Doppel
+            if on_side1:
+                partner_id = r['p11'] if r['p1'] == pid else r['p1']
+                partners = [pmap.get(partner_id, '?')]
+                opponents = [pmap.get(r['p2'], '?'), pmap.get(r['p22'], '?')]
+            else:
+                partner_id = r['p22'] if r['p2'] == pid else r['p2']
+                partners = [pmap.get(partner_id, '?')]
+                opponents = [pmap.get(r['p1'], '?'), pmap.get(r['p11'], '?')]
+
+        result.append({
+            'date': f"{r['day']:02d}.{r['month']:02d}.{r['year']}",
+            'comp': r['comp_name'],
+            'type': 'Einzel' if r['type'] == 1 else 'Doppel',
+            'partners': partners,
+            'opponents': opponents,
+            'won': won,
+            'elo_change': r['elo_change'],
+            'elo_after': r['elo_after'],
+        })
+    return result
+
+
 def get_elo_history(player_id):
     """Gibt (separate, combined) ELO-Verläufe zurück."""
     cur.execute("""
@@ -295,7 +362,7 @@ index_html = f"""<!DOCTYPE html>
   <header>
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
-      <span class="sub">KIXX Hamburg</span>
+      <span class="sub">Tischfußballverband Hamburg</span>
       <span class="timestamp">Stand: {generated_at}</span>
     </div>
   </header>
@@ -414,6 +481,33 @@ for pid, elo_row in elo_all.items():
     rank_s = get_rank('single', elo_s)
     rank_d = get_rank('double', elo_d)
 
+    # Letzte Spiele
+    recent = get_recent_matches(pid)
+    matches_rows_parts = []
+    for m in recent:
+        change = m['elo_change']
+        change_cls = 'pos' if change > 0 else ('neg' if change < 0 else 'neu')
+        change_str = f"+{change}" if change > 0 else str(change)
+        result_str = '✓' if m['won'] else '✗'
+        result_color = 'var(--up)' if m['won'] else 'var(--down)'
+        partner_str = ', '.join(m['partners']) if m['partners'] else '–'
+        opponent_str = '<br>'.join(m['opponents'])
+        # Turniername kürzen
+        comp_short = m['comp'].replace('Offenes Doppel', 'OD').replace('Offenes Einzel', 'OE')
+        matches_rows_parts.append(
+            f'<tr>'
+            f'<td style="color:var(--muted);white-space:nowrap">{m["date"]}</td>'
+            f'<td style="color:var(--muted);font-size:0.78rem">{comp_short}</td>'
+            f'<td style="color:var(--muted)">{m["type"]}</td>'
+            f'<td>{partner_str}</td>'
+            f'<td>{opponent_str}</td>'
+            f'<td class="num" style="color:{result_color};font-weight:700">{result_str}</td>'
+            f'<td class="change {change_cls}">{change_str}</td>'
+            f'<td class="elo" style="font-size:1rem">{m["elo_after"]}</td>'
+            f'</tr>'
+        )
+    matches_rows = '\n'.join(matches_rows_parts) if matches_rows_parts else '<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:20px">Keine Spiele gefunden</td></tr>'
+
     page = f"""<!DOCTYPE html>
 <html lang="de">
 <head>
@@ -472,6 +566,27 @@ for pid, elo_row in elo_all.items():
   <div class="chart-card">
     <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
+  </div>
+
+  <div class="chart-card" style="margin-top:8px">
+    <h3>LETZTE SPIELE</h3>
+    <div style="overflow-x:auto">
+    <table style="font-size:0.84rem">
+      <thead><tr>
+        <th>Datum</th>
+        <th>Turnier</th>
+        <th>Art</th>
+        <th>Partner</th>
+        <th>Gegner</th>
+        <th class="num">Erg.</th>
+        <th class="num">ELO Δ</th>
+        <th class="num">ELO</th>
+      </tr></thead>
+      <tbody>
+        {matches_rows}
+      </tbody>
+    </table>
+    </div>
   </div>
 
   <footer>TFVHH ELO Rangliste · generiert {generated_at}</footer>
