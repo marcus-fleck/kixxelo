@@ -199,8 +199,8 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <header>
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
-      <span class="sub">Tischfußballverband Hamburg</span>
-      <span class="timestamp">Stand: 26.02.2026 18:03</span>
+      <span class="sub">KIXX Hamburg</span>
+      <span class="timestamp">Stand: 17.05.2026 13:19</span>
     </div>
   </header>
 
@@ -209,16 +209,16 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   <div class="player-header">
     <h2>ANDRE RICKERT</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #224</span>
+      <span class="badge badge-combined">Gesamt #274</span>
       <span class="badge badge-single">Einzel #-</span>
-      <span class="badge badge-double">Doppel #224</span>
+      <span class="badge badge-double">Doppel #274</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
       <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">984</div>
+      <div class="value" style="color:var(--accent)">956</div>
     </div>
     <div class="stat-card">
       <div class="label">ELO Einzel</div>
@@ -226,11 +226,11 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">984</div>
+      <div class="value" style="color:var(--up)">956</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">11</div>
+      <div class="value" style="color:var(--text)">3</div>
     </div>
   </div>
 
@@ -243,14 +243,37 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 26.02.2026 18:03</footer>
+  <div class="chart-card" style="margin-top:8px">
+    <h3>LETZTE SPIELE</h3>
+    <div style="overflow-x:auto">
+    <table style="font-size:0.84rem">
+      <thead><tr>
+        <th>Datum</th>
+        <th>Turnier</th>
+        <th>Art</th>
+        <th>Partner</th>
+        <th>Gegner</th>
+        <th class="num">Erg.</th>
+        <th class="num">ELO Δ</th>
+        <th class="num">ELO</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="color:var(--muted);white-space:nowrap">15.04.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #21 (MC): OD</td><td style="color:var(--muted)">Doppel</td><td>Olaf S.</td><td>Paul Jendrasch<br>Barbara Gerlach</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">970</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.04.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #21 (MC): OD</td><td style="color:var(--muted)">Doppel</td><td>Olaf S.</td><td>Joris Riechmann<br>Moritz Graefen</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-16</td><td class="elo" style="font-size:1rem">986</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.04.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #21 (MC): OD</td><td style="color:var(--muted)">Doppel</td><td>Olaf S.</td><td>Erik Borof<br>Konstantin Tobisch-Haupt</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-14</td><td class="elo" style="font-size:1rem">1000</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <footer>TFVHH ELO Rangliste · generiert 17.05.2026 13:19</footer>
 </div>
 
 <script>
-const labels = ["21.11.2025", "21.11.2025", "21.11.2025", "21.11.2025", "21.11.2025", "03.12.2025", "03.12.2025", "03.12.2025", "10.12.2025", "14.01.2026", "11.02.2026"];
-const combinedData = [1000, 989, 1000, 1011, 999, 987, 999, 1012, 1023, 1010, 998];
-const singleData = [null, null, null, null, null, null, null, null, null, null, null];
-const doubleData = [1000, 989, 1000, 1011, 999, 987, 999, 1012, 1023, 1009, 998];
+const labels = ["15.04.2026", "15.04.2026", "15.04.2026"];
+const combinedData = [1000, 986, 970];
+const singleData = [null, null, null];
+const doubleData = [1000, 986, 970];
 
 const chartDefaults = {
   responsive: true,
