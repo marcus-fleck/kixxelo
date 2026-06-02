@@ -272,7 +272,12 @@ def get_recent_matches(player_id, limit=30):
         pid = player_id
         # War der Spieler auf Seite 1 oder 2?
         on_side1 = (r['p1'] == pid or r['p11'] == pid)
-        won = (r['score1'] > r['score2']) if on_side1 else (r['score2'] > r['score1'])
+        if r['score1'] == r['score2']:
+            match_result = 'draw'
+        elif on_side1:
+            match_result = 'won' if r['score1'] > r['score2'] else 'lost'
+        else:
+            match_result = 'won' if r['score2'] > r['score1'] else 'lost'
 
         if r['type'] == 1:  # Einzel
             if on_side1:
@@ -295,7 +300,7 @@ def get_recent_matches(player_id, limit=30):
             'type': 'Einzel' if r['type'] == 1 else 'Doppel',
             'partners': partners,
             'opponents': opponents,
-            'won': won,
+            'result': match_result,
             'elo_change': r['elo_change'],
             'elo_after': r['elo_after'],
         })
@@ -458,8 +463,12 @@ for pid, elo_row in elo_all.items():
         change = m['elo_change']
         change_cls = 'pos' if change > 0 else ('neg' if change < 0 else 'neu')
         change_str = f"+{change}" if change > 0 else str(change)
-        result_str = '✓' if m['won'] else '✗'
-        result_color = 'var(--up)' if m['won'] else 'var(--down)'
+        if m['result'] == 'won':
+            result_str, result_color = '✓', 'var(--up)'
+        elif m['result'] == 'draw':
+            result_str, result_color = '=', 'var(--muted)'
+        else:
+            result_str, result_color = '✗', 'var(--down)'
         partner_str = ', '.join(m['partners']) if m['partners'] else '–'
         opponent_str = '<br>'.join(m['opponents'])
         # Turniername kürzen
