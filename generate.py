@@ -215,11 +215,11 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
 
 def get_rankings():
     cats = {}
-    for col in ('combined', 'single', 'double'):
+    for col in ('double',):
         cur.execute(f"""
             SELECT p.id, p.firstName, p.lastName,
                    e.{col} AS elo,
-                   e.combined, e.single, e.double
+                   e.double
             FROM elo_current e
             JOIN players p ON p.id = e.player_id
             WHERE e.{col} != 1000
@@ -303,16 +303,14 @@ def get_recent_matches(player_id, limit=30):
 
 
 def get_elo_history(player_id):
-    """Gibt (separate, combined) ELO-Verläufe zurück."""
+    """Gibt den Doppel-ELO-Verlauf zurück."""
     cur.execute("""
         SELECT
-            ec.rating AS combined_rating,
             es.rating AS separate_rating,
             c.year, c.month, c.day,
             c.name AS comp_name,
             m.type AS match_type
         FROM played_matches pm
-        JOIN elo_combined ec ON ec.played_match_id = pm.id
         JOIN elo_separate es ON es.played_match_id = pm.id
         JOIN matches m ON m.id = pm.match_id
         JOIN competitions c ON c.id = m.competition_id
@@ -371,23 +369,7 @@ index_html = f"""<!DOCTYPE html>
     <input type="text" id="search" placeholder="Spieler suchen…" oninput="filterRows(this.value)">
   </div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('combined',this)">Gesamt</button>
-    <button class="tab" onclick="switchTab('single',this)">Einzel</button>
-    <button class="tab" onclick="switchTab('double',this)">Doppel</button>
-  </div>
-
-  <div id="panel-combined" class="tab-panel active">
-    <div class="panel-wrap">
-      {render_table(rankings['combined'], 'combined')}
-    </div>
-  </div>
-  <div id="panel-single" class="tab-panel">
-    <div class="panel-wrap">
-      {render_table(rankings['single'], 'single')}
-    </div>
-  </div>
-  <div id="panel-double" class="tab-panel">
+  <div id="panel-double" class="tab-panel active">
     <div class="panel-wrap">
       {render_table(rankings['double'], 'double')}
     </div>
@@ -448,24 +430,14 @@ for pid, elo_row in elo_all.items():
 
     # Chart-Daten aufbereiten
     labels = []
-    combined_data = []
-    single_data = []
     double_data = []
 
     for h in history:
         d = f"{h['day']:02d}.{h['month']:02d}.{h['year']}"
         labels.append(d)
-        combined_data.append(h['combined_rating'])
-        if h['match_type'] == 1:
-            single_data.append(h['separate_rating'])
-            double_data.append(None)
-        else:
-            single_data.append(None)
-            double_data.append(h['separate_rating'])
+        double_data.append(h['separate_rating'])
 
     chart_labels = json.dumps(labels)
-    chart_combined = json.dumps(combined_data)
-    chart_single = json.dumps(single_data)
     chart_double = json.dumps(double_data)
 
     # Statistiken
@@ -477,8 +449,6 @@ for pid, elo_row in elo_all.items():
     def get_rank(col, val):
         return next((i+1 for i, r in enumerate(rankings[col]) if r['id'] == pid), '-')
 
-    rank_c = get_rank('combined', elo_c)
-    rank_s = get_rank('single', elo_s)
     rank_d = get_rank('double', elo_d)
 
     # Letzte Spiele
@@ -534,21 +504,11 @@ for pid, elo_row in elo_all.items():
   <div class="player-header">
     <h2>{name.upper()}</h2>
     <div class="badges">
-      <span class="badge badge-combined">Gesamt #{rank_c}</span>
-      <span class="badge badge-single">Einzel #{rank_s}</span>
       <span class="badge badge-double">Doppel #{rank_d}</span>
     </div>
   </div>
 
   <div class="stats-grid">
-    <div class="stat-card">
-      <div class="label">ELO Gesamt</div>
-      <div class="value" style="color:var(--accent)">{elo_c}</div>
-    </div>
-    <div class="stat-card">
-      <div class="label">ELO Einzel</div>
-      <div class="value" style="color:var(--accent2)">{elo_s}</div>
-    </div>
     <div class="stat-card">
       <div class="label">ELO Doppel</div>
       <div class="value" style="color:var(--up)">{elo_d}</div>
@@ -560,12 +520,8 @@ for pid, elo_row in elo_all.items():
   </div>
 
   <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
-    <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
-  </div>
-  <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
-    <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
+    <h3>ELO ENTWICKLUNG – DOPPEL</h3>
+    <div class="chart-wrap"><canvas id="chartDouble"></canvas></div>
   </div>
 
   <div class="chart-card" style="margin-top:8px">
@@ -594,8 +550,6 @@ for pid, elo_row in elo_all.items():
 
 <script>
 const labels = {chart_labels};
-const combinedData = {chart_combined};
-const singleData = {chart_single};
 const doubleData = {chart_double};
 
 const chartDefaults = {{
@@ -624,15 +578,15 @@ const chartDefaults = {{
   }}
 }};
 
-new Chart(document.getElementById('chartCombined'), {{
+new Chart(document.getElementById('chartDouble'), {{
   type: 'line',
   data: {{
     labels,
     datasets: [{{
-      label: 'Combined ELO',
-      data: combinedData,
-      borderColor: '#e8c847',
-      backgroundColor: 'rgba(232,200,71,0.08)',
+      label: 'Doppel ELO',
+      data: doubleData,
+      borderColor: '#34d399',
+      backgroundColor: 'rgba(52,211,153,0.08)',
       borderWidth: 2,
       pointRadius: 2,
       pointHoverRadius: 5,
@@ -640,40 +594,6 @@ new Chart(document.getElementById('chartCombined'), {{
       tension: 0.3,
       spanGaps: false,
     }}]
-  }},
-  options: chartDefaults
-}});
-
-new Chart(document.getElementById('chartSeparate'), {{
-  type: 'line',
-  data: {{
-    labels,
-    datasets: [
-      {{
-        label: 'Einzel',
-        data: singleData,
-        borderColor: '#4a9eff',
-        backgroundColor: 'rgba(74,158,255,0.06)',
-        borderWidth: 2,
-        pointRadius: 2,
-        pointHoverRadius: 5,
-        fill: false,
-        tension: 0.3,
-        spanGaps: false,
-      }},
-      {{
-        label: 'Doppel',
-        data: doubleData,
-        borderColor: '#34d399',
-        backgroundColor: 'rgba(52,211,153,0.06)',
-        borderWidth: 2,
-        pointRadius: 2,
-        pointHoverRadius: 5,
-        fill: false,
-        tension: 0.3,
-        spanGaps: false,
-      }}
-    ]
   }},
   options: chartDefaults
 }});
