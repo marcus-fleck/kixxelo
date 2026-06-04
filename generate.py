@@ -30,15 +30,15 @@ SHARED_CSS = """
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #0d0f14;
-  --surface:  #161a23;
-  --border:   #252a38;
-  --accent:   #e8c847;
-  --accent2:  #4a9eff;
-  --text:     #e2e8f0;
-  --muted:    #64748b;
-  --up:       #34d399;
-  --down:     #f87171;
+  --bg:       #111111;
+  --surface:  #1c1c1c;
+  --border:   #2e2e2e;
+  --accent:   #e8460a;
+  --accent2:  #ff8c42;
+  --text:     #f0f0f0;
+  --muted:    #777777;
+  --up:       #5cb85c;
+  --down:     #d9534f;
   --font-display: 'Bebas Neue', sans-serif;
   --font-body:    'DM Sans', sans-serif;
 }
@@ -183,9 +183,9 @@ td.matches { text-align: right; color: var(--muted); font-size: 0.85rem; }
   font-weight: 600;
   letter-spacing: 0.5px;
 }
-.badge-combined { background: rgba(232,200,71,0.15); color: var(--accent); border: 1px solid rgba(232,200,71,0.3); }
-.badge-single   { background: rgba(74,158,255,0.12); color: var(--accent2); border: 1px solid rgba(74,158,255,0.3); }
-.badge-double   { background: rgba(52,211,153,0.12); color: var(--up); border: 1px solid rgba(52,211,153,0.3); }
+.badge-combined { background: rgba(232,70,10,0.15); color: var(--accent); border: 1px solid rgba(232,70,10,0.4); }
+.badge-single   { background: rgba(255,140,66,0.12); color: var(--accent2); border: 1px solid rgba(255,140,66,0.3); }
+.badge-double   { background: rgba(92,184,92,0.12); color: var(--up); border: 1px solid rgba(92,184,92,0.3); }
 
 .chart-card {
   background: var(--surface);
@@ -234,8 +234,13 @@ def get_match_counts():
     """)
     return {r[0]: r[1] for r in cur.fetchall()}
 
-def get_recent_matches(player_id, limit=30):
-    cur.execute("""
+def get_recent_matches(player_id, limit=30, match_type=None):
+    type_filter = "AND m.type = ?" if match_type else ""
+    params = [player_id]
+    if match_type:
+        params.append(match_type)
+    params.append(limit)
+    cur.execute(f"""
         SELECT
             m.id, m.type, m.score1, m.score2,
             m.p1, m.p2, m.p11, m.p22,
@@ -246,10 +251,10 @@ def get_recent_matches(player_id, limit=30):
         JOIN matches m ON m.id = pm.match_id
         JOIN competitions c ON c.id = m.competition_id
         JOIN elo_separate es ON es.played_match_id = pm.id
-        WHERE pm.player_id = ?
+        WHERE pm.player_id = ? {type_filter}
         ORDER BY c.unixTimestamp DESC, m.position DESC
         LIMIT ?
-    """, (player_id, limit))
+    """, params)
     rows = [dict(r) for r in cur.fetchall()]
 
     # Alle Spieler-IDs die wir brauchen sammeln und in einem Rutsch laden
@@ -306,9 +311,13 @@ def get_recent_matches(player_id, limit=30):
     return result
 
 
-def get_elo_history(player_id):
-    """Gibt ELO-Verlauf (separate + combined) zurück."""
-    cur.execute("""
+def get_elo_history(player_id, match_type=None):
+    """Gibt ELO-Verlauf zurück. match_type=1 Einzel, 2 Doppel, None=alle."""
+    type_filter = "AND m.type = ?" if match_type else ""
+    params = [player_id]
+    if match_type:
+        params.append(match_type)
+    cur.execute(f"""
         SELECT
             es.rating AS separate_rating,
             ec.rating AS combined_rating,
@@ -320,9 +329,9 @@ def get_elo_history(player_id):
         JOIN elo_combined ec ON ec.played_match_id = pm.id
         JOIN matches m ON m.id = pm.match_id
         JOIN competitions c ON c.id = m.competition_id
-        WHERE pm.player_id = ?
+        WHERE pm.player_id = ? {type_filter}
         ORDER BY c.unixTimestamp, m.position
-    """, (player_id,))
+    """, params)
     return [dict(r) for r in cur.fetchall()]
 
 rankings = get_rankings()
@@ -450,27 +459,35 @@ for pid, elo_row in elo_all.items():
     name = f"{player['firstName']} {player['lastName']}"
     mc = match_counts.get(pid, 0)
 
-    # Chart-Daten aufbereiten
-    labels = []
-    single_data = []
-    double_data = []
+    # Combined Chart (alle Matches)
+    combined_labels = []
     combined_data = []
-
     for h in history:
-        d = f"{h['day']:02d}.{h['month']:02d}.{h['year']}"
-        labels.append(d)
+        combined_labels.append(f"{h['day']:02d}.{h['month']:02d}.{h['year']}")
         combined_data.append(h['combined_rating'])
-        if h['match_type'] == 1:
-            single_data.append(h['separate_rating'])
-            double_data.append(None)
-        else:
-            single_data.append(None)
-            double_data.append(h['separate_rating'])
 
-    chart_labels = json.dumps(labels)
-    chart_single = json.dumps(single_data)
-    chart_double = json.dumps(double_data)
+    # Einzel Chart
+    history_single = get_elo_history(pid, match_type=1)
+    single_labels = []
+    single_data = []
+    for h in history_single:
+        single_labels.append(f"{h['day']:02d}.{h['month']:02d}.{h['year']}")
+        single_data.append(h['separate_rating'])
+
+    # Doppel Chart
+    history_double = get_elo_history(pid, match_type=2)
+    double_labels = []
+    double_data = []
+    for h in history_double:
+        double_labels.append(f"{h['day']:02d}.{h['month']:02d}.{h['year']}")
+        double_data.append(h['separate_rating'])
+
+    chart_combined_labels = json.dumps(combined_labels)
     chart_combined = json.dumps(combined_data)
+    chart_single_labels = json.dumps(single_labels)
+    chart_single = json.dumps(single_data)
+    chart_double_labels = json.dumps(double_labels)
+    chart_double = json.dumps(double_data)
 
     # Statistiken
     elo_c = elo_row.get('combined', 1000)
@@ -485,36 +502,43 @@ for pid, elo_row in elo_all.items():
     rank_s = get_rank('single', elo_s)
     rank_d = get_rank('double', elo_d)
 
-    # Letzte Spiele
-    recent = get_recent_matches(pid)
-    matches_rows_parts = []
-    for m in recent:
-        change = m['elo_change']
-        change_cls = 'pos' if change > 0 else ('neg' if change < 0 else 'neu')
-        change_str = f"+{change}" if change > 0 else str(change)
-        if m['result'] == 'won':
-            result_str, result_color = '✓', 'var(--up)'
-        elif m['result'] == 'draw':
-            result_str, result_color = '=', 'var(--muted)'
-        else:
-            result_str, result_color = '✗', 'var(--down)'
-        partner_str = ', '.join(m['partners']) if m['partners'] else '–'
-        opponent_str = '<br>'.join(m['opponents'])
-        # Turniername kürzen
-        comp_short = m['comp'].replace('Offenes Doppel', 'OD').replace('Offenes Einzel', 'OE')
-        matches_rows_parts.append(
-            f'<tr>'
-            f'<td style="color:var(--muted);white-space:nowrap">{m["date"]}</td>'
-            f'<td style="color:var(--muted);font-size:0.78rem">{comp_short}</td>'
-            f'<td style="color:var(--muted)">{m["type"]}</td>'
-            f'<td>{partner_str}</td>'
-            f'<td>{opponent_str}</td>'
-            f'<td class="num" style="color:{result_color};font-weight:700">{result_str}</td>'
-            f'<td class="change {change_cls}">{change_str}</td>'
-            f'<td class="elo" style="font-size:1rem">{m["elo_after"]}</td>'
-            f'</tr>'
-        )
-    matches_rows = '\n'.join(matches_rows_parts) if matches_rows_parts else '<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:20px">Keine Spiele gefunden</td></tr>'
+    # Letzte Spiele getrennt
+    recent_all    = get_recent_matches(pid, limit=30)
+    recent_single = get_recent_matches(pid, limit=30, match_type=1)
+    recent_double = get_recent_matches(pid, limit=30, match_type=2)
+    def build_match_rows(matches):
+        parts = []
+        for m in matches:
+            change = m['elo_change']
+            change_cls = 'pos' if change > 0 else ('neg' if change < 0 else 'neu')
+            change_str = f"+{change}" if change > 0 else str(change)
+            if m['result'] == 'won':
+                result_str, result_color = '✓', 'var(--up)'
+            elif m['result'] == 'draw':
+                result_str, result_color = '=', 'var(--muted)'
+            else:
+                result_str, result_color = '✗', 'var(--down)'
+            partner_str = ', '.join(m['partners']) if m['partners'] else '–'
+            opponent_str = '<br>'.join(m['opponents'])
+            # Turniername kürzen
+            comp_short = m['comp'].replace('Offenes Doppel', 'OD').replace('Offenes Einzel', 'OE')
+            parts.append(
+                f'<tr>'
+                f'<td style="color:var(--muted);white-space:nowrap">{m["date"]}</td>'
+                f'<td style="color:var(--muted);font-size:0.78rem">{comp_short}</td>'
+                f'<td style="color:var(--muted)">{m["type"]}</td>'
+                f'<td>{partner_str}</td>'
+                f'<td>{opponent_str}</td>'
+                f'<td class="num" style="color:{result_color};font-weight:700">{result_str}</td>'
+                f'<td class="change {change_cls}">{change_str}</td>'
+                f'<td class="elo" style="font-size:1rem">{m["elo_after"]}</td>'
+                f'</tr>'
+            )
+        return '\n'.join(parts) if parts else '<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:20px">Keine Spiele gefunden</td></tr>'
+
+    matches_rows_all    = build_match_rows(recent_all)
+    matches_rows_single = build_match_rows(recent_single)
+    matches_rows_double = build_match_rows(recent_double)
 
     page = f"""<!DOCTYPE html>
 <html lang="de">
@@ -567,33 +591,55 @@ for pid, elo_row in elo_all.items():
     </div>
   </div>
 
-  <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
-    <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
-  </div>
-  <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
-    <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
+  <!-- Tabs für Spielerseite -->
+  <div class="tabs">
+    <button class="tab active" onclick="switchPlayerTab('all',this)">Alle</button>
+    <button class="tab" onclick="switchPlayerTab('single',this)">Einzel</button>
+    <button class="tab" onclick="switchPlayerTab('double',this)">Doppel</button>
   </div>
 
-  <div class="chart-card" style="margin-top:8px">
-    <h3>LETZTE SPIELE</h3>
-    <div style="overflow-x:auto">
-    <table style="font-size:0.84rem">
-      <thead><tr>
-        <th>Datum</th>
-        <th>Turnier</th>
-        <th>Art</th>
-        <th>Partner</th>
-        <th>Gegner</th>
-        <th class="num">Erg.</th>
-        <th class="num">ELO Δ</th>
-        <th class="num">ELO</th>
-      </tr></thead>
-      <tbody>
-        {matches_rows}
-      </tbody>
-    </table>
+  <div id="ptab-all" class="tab-panel active">
+    <div class="chart-card">
+      <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
+      <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
+    </div>
+    <div class="chart-card" style="margin-top:8px">
+      <h3>LETZTE SPIELE</h3>
+      <div style="overflow-x:auto">
+      <table style="font-size:0.84rem">
+        <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
+        <tbody>{matches_rows_all}</tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div id="ptab-single" class="tab-panel">
+    <div class="chart-card">
+      <h3>ELO ENTWICKLUNG – EINZEL</h3>
+      <div class="chart-wrap"><canvas id="chartSingle"></canvas></div>
+    </div>
+    <div class="chart-card" style="margin-top:8px">
+      <h3>LETZTE EINZELSPIELE</h3>
+      <div style="overflow-x:auto">
+      <table style="font-size:0.84rem">
+        <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
+        <tbody>{matches_rows_single}</tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div id="ptab-double" class="tab-panel">
+    <div class="chart-card">
+      <h3>ELO ENTWICKLUNG – DOPPEL</h3>
+      <div class="chart-wrap"><canvas id="chartDouble"></canvas></div>
+    </div>
+    <div class="chart-card" style="margin-top:8px">
+      <h3>LETZTE DOPPELSPIELE</h3>
+      <div style="overflow-x:auto">
+      <table style="font-size:0.84rem">
+        <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
+        <tbody>{matches_rows_double}</tbody>
+      </table></div>
     </div>
   </div>
 
@@ -601,11 +647,6 @@ for pid, elo_row in elo_all.items():
 </div>
 
 <script>
-const labels = {chart_labels};
-const combinedData = {chart_combined};
-const singleData = {chart_single};
-const doubleData = {chart_double};
-
 const chartDefaults = {{
   responsive: true,
   maintainAspectRatio: false,
@@ -633,58 +674,35 @@ const chartDefaults = {{
 }};
 
 new Chart(document.getElementById('chartCombined'), {{
-  type: 'line',
-  data: {{
-    labels,
-    datasets: [{{
-      label: 'Combined ELO',
-      data: combinedData,
-      borderColor: '#e8c847',
-      backgroundColor: 'rgba(232,200,71,0.08)',
-      borderWidth: 2,
-      pointRadius: 2,
-      pointHoverRadius: 5,
-      fill: true,
-      tension: 0.3,
-      spanGaps: false,
-    }}]
-  }},
-  options: chartDefaults
+  type: 'line', data: {{ labels: {chart_combined_labels}, datasets: [{{
+    label: 'Combined ELO', data: {chart_combined},
+    borderColor: '#e8460a', backgroundColor: 'rgba(232,70,10,0.08)',
+    borderWidth: 2, pointRadius: 2, pointHoverRadius: 5, fill: true, tension: 0.3
+  }}] }}, options: chartDefaults
 }});
 
-new Chart(document.getElementById('chartSeparate'), {{
-  type: 'line',
-  data: {{
-    labels,
-    datasets: [
-      {{
-        label: 'Einzel',
-        data: singleData,
-        borderColor: '#4a9eff',
-        backgroundColor: 'rgba(74,158,255,0.06)',
-        borderWidth: 2,
-        pointRadius: 2,
-        pointHoverRadius: 5,
-        fill: false,
-        tension: 0.3,
-        spanGaps: false,
-      }},
-      {{
-        label: 'Doppel',
-        data: doubleData,
-        borderColor: '#34d399',
-        backgroundColor: 'rgba(52,211,153,0.06)',
-        borderWidth: 2,
-        pointRadius: 2,
-        pointHoverRadius: 5,
-        fill: false,
-        tension: 0.3,
-        spanGaps: false,
-      }}
-    ]
-  }},
-  options: chartDefaults
+new Chart(document.getElementById('chartSingle'), {{
+  type: 'line', data: {{ labels: {chart_single_labels}, datasets: [{{
+    label: 'Einzel ELO', data: {chart_single},
+    borderColor: '#ff8c42', backgroundColor: 'rgba(255,140,66,0.08)',
+    borderWidth: 2, pointRadius: 2, pointHoverRadius: 5, fill: true, tension: 0.3
+  }}] }}, options: chartDefaults
 }});
+
+new Chart(document.getElementById('chartDouble'), {{
+  type: 'line', data: {{ labels: {chart_double_labels}, datasets: [{{
+    label: 'Doppel ELO', data: {chart_double},
+    borderColor: '#5cb85c', backgroundColor: 'rgba(92,184,92,0.08)',
+    borderWidth: 2, pointRadius: 2, pointHoverRadius: 5, fill: true, tension: 0.3
+  }}] }}, options: chartDefaults
+}});
+
+function switchPlayerTab(id, btn) {{
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('ptab-' + id).classList.add('active');
+  btn.classList.add('active');
+}}
 </script>
 </body>
 </html>
