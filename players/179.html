@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sebastian Kleis – TFVHH ELO</title>
+<title>Sebastian Mader – TFVHH ELO</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 
@@ -200,33 +200,47 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 02.06.2026 20:57</span>
+      <span class="timestamp">Stand: 04.06.2026 07:48</span>
     </div>
   </header>
 
   <a href="../index.html" class="back">← Zurück zur Rangliste</a>
 
   <div class="player-header">
-    <h2>SEBASTIAN KLEIS</h2>
+    <h2>SEBASTIAN MADER</h2>
     <div class="badges">
-      <span class="badge badge-double">Doppel #1262</span>
+      <span class="badge badge-combined">Gesamt #67</span>
+      <span class="badge badge-single">Einzel #20</span>
+      <span class="badge badge-double">Doppel #152</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
+      <div class="label">ELO Gesamt</div>
+      <div class="value" style="color:var(--accent)">1138</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">ELO Einzel</div>
+      <div class="value" style="color:var(--accent2)">1068</div>
+    </div>
+    <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">755</div>
+      <div class="value" style="color:var(--up)">1057</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">47</div>
+      <div class="value" style="color:var(--text)">40</div>
     </div>
   </div>
 
   <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – DOPPEL</h3>
-    <div class="chart-wrap"><canvas id="chartDouble"></canvas></div>
+    <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
+    <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
+    <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
   <div class="chart-card" style="margin-top:8px">
@@ -244,47 +258,49 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
         <th class="num">ELO</th>
       </tr></thead>
       <tbody>
-        <tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Johanna Düntsch<br>Peter  Behl</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-5</td><td class="elo" style="font-size:1rem">755</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Ali Anik<br>Leon Unger</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">760</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Jake Bondoc<br>Thanh Thao Phan</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-8</td><td class="elo" style="font-size:1rem">766</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Mehran Amirsoleymani<br>Sören  Hüttemann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">774</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Niklas Eigler<br>Nathalie Porsiel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-5</td><td class="elo" style="font-size:1rem">780</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">10.01.2026</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Franz Rhee</td><td>Mehran Amirsoleymani<br>Sören  Hüttemann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">785</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Celine Hofer<br>Theodor Czehmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-7</td><td class="elo" style="font-size:1rem">791</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Dagmar Dubberstein<br>Malte Groth</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">798</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Franz Rhee<br>Lilli Moana Kessel</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">809</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Abdullah Mariam<br>Jakob Bahrini</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-4</td><td class="elo" style="font-size:1rem">799</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Miriam Grunau<br>Thekla Ambros</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">803</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">06.12.2025</td><td style="color:var(--muted);font-size:0.78rem">KIXX SaDo</td><td style="color:var(--muted)">Doppel</td><td>Dennis Kletzel</td><td>Kilian Hodrus<br>Christian Honsel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-4</td><td class="elo" style="font-size:1rem">815</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Annika Friedrich<br>Christine Braun</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+9</td><td class="elo" style="font-size:1rem">819</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Nico Schulze<br>Jake Bondoc</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+2</td><td class="elo" style="font-size:1rem">810</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Lasse Felix Geiger<br>Jakob Bahrini</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">808</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Barbara Gerlach<br>Armin Boß</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">821</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Hakim Ikhlef<br>Ali Nassar</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+19</td><td class="elo" style="font-size:1rem">833</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Anna Rüpcke<br>Lorenz Schlueter</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">814</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Mandy Reimann<br>Montassar Alibi</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+15</td><td class="elo" style="font-size:1rem">824</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Lilli Moana Kessel<br>Tim Wedemann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-8</td><td class="elo" style="font-size:1rem">809</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.07.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Stefan Engelhardt</td><td>Janis Zisenis<br>Svenja Tüitjer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">817</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Felix Braun<br>Adisa Ademovic</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-5</td><td class="elo" style="font-size:1rem">823</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Farhad Aziz<br>Paula Köppe</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">828</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Lennart Geßner<br>Lars Mählmann</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-2</td><td class="elo" style="font-size:1rem">840</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Matthias Mayer<br>Paul Jendrasch</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">842</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Florian Schäfers<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">851</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Patrick Ramm<br>Daniel Künkel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">863</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Patrick Ramm<br>Daniel Künkel</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">875</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">05.04.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDo</td><td style="color:var(--muted)">Doppel</td><td>Monika Block</td><td>Matthias Bonsack<br>Henner Rüschmeier</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">862</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Dagmar Dubberstein</td><td>Pia-Louise Claußen<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-8</td><td class="elo" style="font-size:1rem">873</td></tr>
+        <tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Patrick Naujoks</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+9</td><td class="elo" style="font-size:1rem">1059</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Tim Wedemann</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+11</td><td class="elo" style="font-size:1rem">1048</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Valentin Weichsel</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">1035</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Kim Zülsdorff</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+11</td><td class="elo" style="font-size:1rem">1024</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Kilian Hodrus</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">1037</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Dennis Fechtmann</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+7</td><td class="elo" style="font-size:1rem">1030</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Dennis Belle</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1030</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">21.08.2025</td><td style="color:var(--muted);font-size:0.78rem">5. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Djamila Nader</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-1</td><td class="elo" style="font-size:1rem">1031</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Rikko Tüitjer</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-1</td><td class="elo" style="font-size:1rem">1032</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Michele Iacci</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1021</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Feras Alibrahim</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">1008</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Marius Meyer-Hemme</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">1017</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Moritz Josten</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+1</td><td class="elo" style="font-size:1rem">1017</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Lukas Staratzky</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+12</td><td class="elo" style="font-size:1rem">1004</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Dennis Fechtmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">1010</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">14.08.2025</td><td style="color:var(--muted);font-size:0.78rem">4. Kixx Einzel Sommerturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Miriam Grunau</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1000</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Isabella Tran<br>Kathrin Anja Victoria Krones</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1046</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Klaas Lohmann<br>Lars Thomsen</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">1057</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Dario Möller<br>Jan-Hendrik Ehlers</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+9</td><td class="elo" style="font-size:1rem">1047</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Dennis Belle<br>Viktor Vasilev</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">1035</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Sina Calberlah<br>Sven Decken</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">1048</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+16</td><td class="elo" style="font-size:1rem">1032</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">05.03.2025</td><td style="color:var(--muted);font-size:0.78rem">9. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Artur Lerm<br>Rem Alinsug</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">1043</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">26.02.2025</td><td style="color:var(--muted);font-size:0.78rem">8. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Lukas Staratzky<br>Jinjing Ge</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-1</td><td class="elo" style="font-size:1rem">1043</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">26.02.2025</td><td style="color:var(--muted);font-size:0.78rem">8. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Stefan Engelhardt<br>Igor Pagacz</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1033</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">26.02.2025</td><td style="color:var(--muted);font-size:0.78rem">8. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Knuth Strecker<br>Michael Prinz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">1046</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">26.02.2025</td><td style="color:var(--muted);font-size:0.78rem">8. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Christian Bergert<br>Erik Borof</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+11</td><td class="elo" style="font-size:1rem">1035</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">26.02.2025</td><td style="color:var(--muted);font-size:0.78rem">8. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Thomas Beierlein</td><td>Knuth Strecker<br>Michael Prinz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">1048</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Sören Schlotfeldt</td><td>Jan Hain<br>Stefan von Gartzen</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1038</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Sören Schlotfeldt</td><td>Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">1048</td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 02.06.2026 20:57</footer>
+  <footer>TFVHH ELO Rangliste · generiert 04.06.2026 07:48</footer>
 </div>
 
 <script>
-const labels = ["09.11.2024", "09.11.2024", "09.11.2024", "09.11.2024", "09.11.2024", "09.11.2024", "09.11.2024", "27.11.2024", "27.11.2024", "27.11.2024", "27.11.2024", "27.11.2024", "27.11.2024", "18.12.2024", "18.12.2024", "18.12.2024", "18.12.2024", "18.12.2024", "05.04.2025", "05.04.2025", "05.04.2025", "05.04.2025", "05.04.2025", "05.04.2025", "05.04.2025", "05.04.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "12.07.2025", "06.12.2025", "06.12.2025", "06.12.2025", "06.12.2025", "06.12.2025", "06.12.2025", "10.01.2026", "10.01.2026", "10.01.2026", "10.01.2026", "10.01.2026", "10.01.2026"];
-const doubleData = [988, 972, 960, 959, 957, 943, 932, 921, 909, 896, 907, 909, 906, 898, 894, 884, 881, 873, 862, 875, 863, 851, 842, 840, 828, 823, 817, 809, 824, 814, 833, 821, 808, 810, 819, 815, 803, 799, 809, 798, 791, 785, 780, 774, 766, 760, 755];
+const labels = ["22.01.2025", "22.01.2025", "22.01.2025", "22.01.2025", "22.01.2025", "22.01.2025", "22.01.2025", "12.02.2025", "12.02.2025", "12.02.2025", "12.02.2025", "12.02.2025", "26.02.2025", "26.02.2025", "26.02.2025", "26.02.2025", "26.02.2025", "05.03.2025", "05.03.2025", "05.03.2025", "05.03.2025", "05.03.2025", "05.03.2025", "05.03.2025", "14.08.2025", "14.08.2025", "14.08.2025", "14.08.2025", "14.08.2025", "14.08.2025", "14.08.2025", "14.08.2025", "21.08.2025", "21.08.2025", "21.08.2025", "21.08.2025", "21.08.2025", "21.08.2025", "21.08.2025", "21.08.2025"];
+const combinedData = [1000, 1012, 1000, 1001, 1015, 1027, 1037, 1047, 1035, 1047, 1048, 1038, 1048, 1035, 1046, 1033, 1043, 1043, 1032, 1048, 1035, 1047, 1057, 1046, 1057, 1067, 1062, 1075, 1082, 1077, 1091, 1099, 1095, 1101, 1100, 1107, 1097, 1109, 1121, 1129];
+const singleData = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 1000, 1010, 1004, 1017, 1017, 1008, 1021, 1032, 1031, 1030, 1030, 1037, 1024, 1035, 1048, 1059];
+const doubleData = [1000, 1012, 1000, 1001, 1015, 1027, 1037, 1047, 1035, 1047, 1048, 1038, 1048, 1035, 1046, 1033, 1043, 1043, 1032, 1048, 1035, 1047, 1057, 1046, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
 
 const chartDefaults = {
   responsive: true,
@@ -312,15 +328,15 @@ const chartDefaults = {
   }
 };
 
-new Chart(document.getElementById('chartDouble'), {
+new Chart(document.getElementById('chartCombined'), {
   type: 'line',
   data: {
     labels,
     datasets: [{
-      label: 'Doppel ELO',
-      data: doubleData,
-      borderColor: '#34d399',
-      backgroundColor: 'rgba(52,211,153,0.08)',
+      label: 'Combined ELO',
+      data: combinedData,
+      borderColor: '#e8c847',
+      backgroundColor: 'rgba(232,200,71,0.08)',
       borderWidth: 2,
       pointRadius: 2,
       pointHoverRadius: 5,
@@ -328,6 +344,40 @@ new Chart(document.getElementById('chartDouble'), {
       tension: 0.3,
       spanGaps: false,
     }]
+  },
+  options: chartDefaults
+});
+
+new Chart(document.getElementById('chartSeparate'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Einzel',
+        data: singleData,
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74,158,255,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      },
+      {
+        label: 'Doppel',
+        data: doubleData,
+        borderColor: '#34d399',
+        backgroundColor: 'rgba(52,211,153,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      }
+    ]
   },
   options: chartDefaults
 });

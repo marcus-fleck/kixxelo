@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Stefan Coesfeld – TFVHH ELO</title>
+<title>Jasmin Wolf – TFVHH ELO</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 
@@ -200,33 +200,47 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 02.06.2026 20:57</span>
+      <span class="timestamp">Stand: 04.06.2026 07:48</span>
     </div>
   </header>
 
   <a href="../index.html" class="back">← Zurück zur Rangliste</a>
 
   <div class="player-header">
-    <h2>STEFAN COESFELD</h2>
+    <h2>JASMIN WOLF</h2>
     <div class="badges">
-      <span class="badge badge-double">Doppel #267</span>
+      <span class="badge badge-combined">Gesamt #731</span>
+      <span class="badge badge-single">Einzel #-</span>
+      <span class="badge badge-double">Doppel #732</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
+      <div class="label">ELO Gesamt</div>
+      <div class="value" style="color:var(--accent)">939</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">ELO Einzel</div>
+      <div class="value" style="color:var(--accent2)">1000</div>
+    </div>
+    <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">1040</div>
+      <div class="value" style="color:var(--up)">939</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">6</div>
+      <div class="value" style="color:var(--text)">7</div>
     </div>
   </div>
 
   <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – DOPPEL</h3>
-    <div class="chart-wrap"><canvas id="chartDouble"></canvas></div>
+    <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
+    <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
+    <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
   <div class="chart-card" style="margin-top:8px">
@@ -244,23 +258,26 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
         <th class="num">ELO</th>
       </tr></thead>
       <tbody>
-        <tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>David Hansen<br>Leonardo Stamerra</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+19</td><td class="elo" style="font-size:1rem">1040</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>Stefan Schöb<br>Philipp Gamper</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-5</td><td class="elo" style="font-size:1rem">1021</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>Felix Schiborn<br>Michael Strelow</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+2</td><td class="elo" style="font-size:1rem">1026</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>Igor Pagacz<br>Paul Jendrasch</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">1024</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>Sven Reepschläger<br>Tan Cuong Mach</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">1010</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.03.2026</td><td style="color:var(--muted);font-size:0.78rem">11. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Jörg Simon</td><td>Oliver Weihrauch<br>Finn Meyer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-3</td><td class="elo" style="font-size:1rem">997</td></tr>
+        <tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Guido Böhm<br>Janin Block</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">951</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Mansool <br>Johannes Schlüter</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">937</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Sascha Illg<br>Christine Braun</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">950</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Julia Voecks<br>Svenja Tüitjer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">962</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Bettina Hammelrath<br>Peer Priebe</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">974</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Alina Schadwinkel<br>Marius Meyer-Hemme</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-6</td><td class="elo" style="font-size:1rem">981</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">29.03.2025</td><td style="color:var(--muted);font-size:0.78rem">Kixx SaDO</td><td style="color:var(--muted)">Doppel</td><td>Simone Wolf</td><td>Lasse Geiger<br>Joris Riechmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-19</td><td class="elo" style="font-size:1rem">1000</td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 02.06.2026 20:57</footer>
+  <footer>TFVHH ELO Rangliste · generiert 04.06.2026 07:48</footer>
 </div>
 
 <script>
-const labels = ["18.03.2026", "18.03.2026", "18.03.2026", "18.03.2026", "18.03.2026", "18.03.2026"];
-const doubleData = [997, 1010, 1024, 1026, 1021, 1040];
+const labels = ["29.03.2025", "29.03.2025", "29.03.2025", "29.03.2025", "29.03.2025", "29.03.2025", "29.03.2025"];
+const combinedData = [1000, 981, 974, 961, 949, 937, 951];
+const singleData = [null, null, null, null, null, null, null];
+const doubleData = [1000, 981, 974, 962, 950, 937, 951];
 
 const chartDefaults = {
   responsive: true,
@@ -288,15 +305,15 @@ const chartDefaults = {
   }
 };
 
-new Chart(document.getElementById('chartDouble'), {
+new Chart(document.getElementById('chartCombined'), {
   type: 'line',
   data: {
     labels,
     datasets: [{
-      label: 'Doppel ELO',
-      data: doubleData,
-      borderColor: '#34d399',
-      backgroundColor: 'rgba(52,211,153,0.08)',
+      label: 'Combined ELO',
+      data: combinedData,
+      borderColor: '#e8c847',
+      backgroundColor: 'rgba(232,200,71,0.08)',
       borderWidth: 2,
       pointRadius: 2,
       pointHoverRadius: 5,
@@ -304,6 +321,40 @@ new Chart(document.getElementById('chartDouble'), {
       tension: 0.3,
       spanGaps: false,
     }]
+  },
+  options: chartDefaults
+});
+
+new Chart(document.getElementById('chartSeparate'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Einzel',
+        data: singleData,
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74,158,255,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      },
+      {
+        label: 'Doppel',
+        data: doubleData,
+        borderColor: '#34d399',
+        backgroundColor: 'rgba(52,211,153,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      }
+    ]
   },
   options: chartDefaults
 });

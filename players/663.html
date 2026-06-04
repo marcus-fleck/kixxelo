@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Torben Schweer – TFVHH ELO</title>
+<title>Arne Onnasch – TFVHH ELO</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 
@@ -200,33 +200,47 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 02.06.2026 20:57</span>
+      <span class="timestamp">Stand: 04.06.2026 07:48</span>
     </div>
   </header>
 
   <a href="../index.html" class="back">← Zurück zur Rangliste</a>
 
   <div class="player-header">
-    <h2>TORBEN SCHWEER</h2>
+    <h2>ARNE ONNASCH</h2>
     <div class="badges">
-      <span class="badge badge-double">Doppel #119</span>
+      <span class="badge badge-combined">Gesamt #543</span>
+      <span class="badge badge-single">Einzel #150</span>
+      <span class="badge badge-double">Doppel #-</span>
     </div>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
+      <div class="label">ELO Gesamt</div>
+      <div class="value" style="color:var(--accent)">969</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">ELO Einzel</div>
+      <div class="value" style="color:var(--accent2)">958</div>
+    </div>
+    <div class="stat-card">
       <div class="label">ELO Doppel</div>
-      <div class="value" style="color:var(--up)">1124</div>
+      <div class="value" style="color:var(--up)">1000</div>
     </div>
     <div class="stat-card">
       <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">51</div>
+      <div class="value" style="color:var(--text)">6</div>
     </div>
   </div>
 
   <div class="chart-card">
-    <h3>ELO ENTWICKLUNG – DOPPEL</h3>
-    <div class="chart-wrap"><canvas id="chartDouble"></canvas></div>
+    <h3>ELO ENTWICKLUNG – GESAMT (COMBINED)</h3>
+    <div class="chart-wrap"><canvas id="chartCombined"></canvas></div>
+  </div>
+  <div class="chart-card">
+    <h3>ELO ENTWICKLUNG – EINZEL &amp; DOPPEL</h3>
+    <div class="chart-wrap"><canvas id="chartSeparate"></canvas></div>
   </div>
 
   <div class="chart-card" style="margin-top:8px">
@@ -244,47 +258,25 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
         <th class="num">ELO</th>
       </tr></thead>
       <tbody>
-        <tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Janin Block<br>Helge Neubauer</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neg">-8</td><td class="elo" style="font-size:1rem">1124</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Tim Wedemann<br>Jonas Roeer</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+9</td><td class="elo" style="font-size:1rem">1132</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Nico Wohlgemuth<br>Lia Joham</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+1</td><td class="elo" style="font-size:1rem">1123</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Kai Eggerstedt<br>Mehmet Arslan</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1122</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Laura Christin Dinse<br>Daniel Pöche</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+4</td><td class="elo" style="font-size:1rem">1134</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">28.05.2025</td><td style="color:var(--muted);font-size:0.78rem">21. Kixx Mido</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Klaas Lohmann<br>Ilja Pavkovic</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-16</td><td class="elo" style="font-size:1rem">1130</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Alexander Graf<br>Luciano Auria</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+7</td><td class="elo" style="font-size:1rem">1146</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Stefan Engelhardt<br>Sven Reepschläger</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+7</td><td class="elo" style="font-size:1rem">1139</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Kilian Hodrus<br>Viktor Vasilev</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">1132</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Puyan Sattarian<br>André Bammesberger</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">1118</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Arne Borck<br>Jan Sorgenfrei</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1129</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Stefan Engelhardt<br>Sven Reepschläger</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+7</td><td class="elo" style="font-size:1rem">1129</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">19.02.2025</td><td style="color:var(--muted);font-size:0.78rem">7. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Lars Thomsen<br>Artur Lerm</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">1122</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Celine Hofer<br>Alina Porechina</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">1119</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Katharina Ziehr<br>Thorben Harms</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">1111</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Tom Bigalke Garcia<br>Valentin Weichsel</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+11</td><td class="elo" style="font-size:1rem">1101</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Abdulatif Mujali<br>Iskander Al-Maqtry</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-14</td><td class="elo" style="font-size:1rem">1090</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Mike Kaufmann<br>Lydia Visser</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+12</td><td class="elo" style="font-size:1rem">1104</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Julia Voecks<br>Isabell Uhlendorf</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+12</td><td class="elo" style="font-size:1rem">1092</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Jens Wohlgemuth<br>Dirk Marquardt</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+13</td><td class="elo" style="font-size:1rem">1080</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Caroline Vogler<br>Puyan Sattarian</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">1067</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">30.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Halloween Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Sven Humpert</td><td>Roland Töppe<br>Lars Scheel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-14</td><td class="elo" style="font-size:1rem">1078</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Philipp Köhnken<br>Laura Christin Dinse</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+5</td><td class="elo" style="font-size:1rem">1092</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Alexander Freiherr von Seld<br>Niels Porsiel</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+5</td><td class="elo" style="font-size:1rem">1087</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Bela Günther<br>Sanna Dibowski</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">1082</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Theodor Czehmann<br>Daniel Pöche</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+9</td><td class="elo" style="font-size:1rem">1079</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Mattes Bürk<br>Jennifer Behrens</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">1070</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Marcel Eyfferth<br>Bengt Hanig</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">1085</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Valentina Schmitz<br>Julia Steinhorst</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+7</td><td class="elo" style="font-size:1rem">1077</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">16.10.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel</td><td style="color:var(--muted)">Doppel</td><td>Tobias Müller</td><td>Ronny Brozinski<br>Thorben Pützschler</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-16</td><td class="elo" style="font-size:1rem">1070</td></tr>
+        <tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Moritz Baars</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+10</td><td class="elo" style="font-size:1rem">948</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Andreas Hüner</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">959</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Lars Thomsen</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">969</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Tim Wedemann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">981</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Marius Meyer-Hemme</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-8</td><td class="elo" style="font-size:1rem">988</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">31.07.2025</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Sommer Einzelturnier</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Andreas Hüner</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
       </tbody>
     </table>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 02.06.2026 20:57</footer>
+  <footer>TFVHH ELO Rangliste · generiert 04.06.2026 07:48</footer>
 </div>
 
 <script>
-const labels = ["29.05.2024", "29.05.2024", "29.05.2024", "29.05.2024", "29.05.2024", "29.05.2024", "29.05.2024", "17.07.2024", "17.07.2024", "17.07.2024", "17.07.2024", "17.07.2024", "17.07.2024", "17.07.2024", "21.08.2024", "21.08.2024", "21.08.2024", "21.08.2024", "21.08.2024", "21.08.2024", "21.08.2024", "16.10.2024", "16.10.2024", "16.10.2024", "16.10.2024", "16.10.2024", "16.10.2024", "16.10.2024", "16.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "30.10.2024", "19.02.2025", "19.02.2025", "19.02.2025", "19.02.2025", "19.02.2025", "19.02.2025", "19.02.2025", "28.05.2025", "28.05.2025", "28.05.2025", "28.05.2025", "28.05.2025", "28.05.2025"];
-const doubleData = [990, 981, 994, 1007, 1019, 1030, 1043, 1034, 1048, 1061, 1072, 1070, 1080, 1089, 1088, 1088, 1074, 1067, 1076, 1073, 1086, 1070, 1077, 1085, 1070, 1079, 1082, 1087, 1092, 1078, 1067, 1080, 1092, 1104, 1090, 1101, 1111, 1119, 1122, 1129, 1129, 1118, 1132, 1139, 1146, 1130, 1134, 1122, 1123, 1132, 1124];
+const labels = ["31.07.2025", "31.07.2025", "31.07.2025", "31.07.2025", "31.07.2025", "31.07.2025"];
+const combinedData = [1000, 988, 985, 976, 973, 961];
+const singleData = [1000, 988, 981, 969, 959, 948];
+const doubleData = [null, null, null, null, null, null];
 
 const chartDefaults = {
   responsive: true,
@@ -312,15 +304,15 @@ const chartDefaults = {
   }
 };
 
-new Chart(document.getElementById('chartDouble'), {
+new Chart(document.getElementById('chartCombined'), {
   type: 'line',
   data: {
     labels,
     datasets: [{
-      label: 'Doppel ELO',
-      data: doubleData,
-      borderColor: '#34d399',
-      backgroundColor: 'rgba(52,211,153,0.08)',
+      label: 'Combined ELO',
+      data: combinedData,
+      borderColor: '#e8c847',
+      backgroundColor: 'rgba(232,200,71,0.08)',
       borderWidth: 2,
       pointRadius: 2,
       pointHoverRadius: 5,
@@ -328,6 +320,40 @@ new Chart(document.getElementById('chartDouble'), {
       tension: 0.3,
       spanGaps: false,
     }]
+  },
+  options: chartDefaults
+});
+
+new Chart(document.getElementById('chartSeparate'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      {
+        label: 'Einzel',
+        data: singleData,
+        borderColor: '#4a9eff',
+        backgroundColor: 'rgba(74,158,255,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      },
+      {
+        label: 'Doppel',
+        data: doubleData,
+        borderColor: '#34d399',
+        backgroundColor: 'rgba(52,211,153,0.06)',
+        borderWidth: 2,
+        pointRadius: 2,
+        pointHoverRadius: 5,
+        fill: false,
+        tension: 0.3,
+        spanGaps: false,
+      }
+    ]
   },
   options: chartDefaults
 });
