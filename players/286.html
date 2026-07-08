@@ -81,13 +81,21 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* Table */
+/* Table Container mit nativem horizontalem Scrollen auf Mobilgeräten */
 .panel-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0 8px 8px 8px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table { width: 100%; border-collapse: collapse; }
 thead th {
   padding: 12px 16px;
@@ -98,6 +106,7 @@ thead th {
   color: var(--muted);
   background: var(--bg);
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
 }
 thead th.num { text-align: right; }
 tbody tr {
@@ -117,7 +126,7 @@ td.rank {
 td.rank.gold   { color: #f5c842; }
 td.rank.silver { color: #adb5c7; }
 td.rank.bronze { color: #cd7f45; }
-td.name { font-weight: 500; }
+td.name { font-weight: 500; white-space: nowrap; }
 td.name a { color: var(--text); text-decoration: none; }
 td.name a:hover { color: var(--accent); }
 td.elo {
@@ -192,6 +201,41 @@ canvas { width: 100% !important; height: 100% !important; }
 
 footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.78rem; color: var(--muted); }
 
+/* ── Mobile (Hochkant) ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .wrap { padding: 0 12px; }
+
+  header { padding: 18px 0 14px; margin-bottom: 24px; }
+  header .inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+  header h1 { font-size: 1.9rem; letter-spacing: 1px; }
+  .timestamp { margin-left: 0; }
+
+  .tabs { gap: 2px; }
+  .tab { padding: 7px 12px; font-size: 0.8rem; }
+
+  .search-wrap input { max-width: none; }
+
+  /* Tabellen-Zellen-Kompression auf Mobile */
+  thead th { padding: 9px 12px; font-size: 0.65rem; }
+  td { padding: 9px 12px; }
+  td.rank { font-size: 1rem; width: 30px; }
+  td.elo { font-size: 1.05rem; }
+  td.matches { font-size: 0.78rem; }
+
+  .player-header h2 { font-size: 2.1rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-card { padding: 12px; }
+  .stat-card .value { font-size: 1.4rem; }
+
+  .chart-card { padding: 14px; }
+  .chart-wrap { height: 180px; }
+}
+
+@media (max-width: 380px) {
+  header h1 { font-size: 1.6rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 </style>
 </head>
 <body>
@@ -200,7 +244,7 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 06.07.2026 10:26</span>
+      <span class="timestamp">Stand: 08.07.2026 16:10</span>
     </div>
   </header>
 
@@ -234,7 +278,6 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
   </div>
 
-  <!-- Tabs für Spielerseite -->
   <div class="tabs">
     <button class="tab active" onclick="switchPlayerTab('all',this)">Alle</button>
     <button class="tab" onclick="switchPlayerTab('single',this)">Einzel</button>
@@ -248,35 +291,35 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE SPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div class="table-responsive">
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Alexander Graf<br>Maximilian Krippendorf</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">911</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Amr Alloush<br>Yousef Khan</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">904</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-3</td><td class="elo" style="font-size:1rem">907</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Steven Falkert<br>Patrick Naujoks</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">906</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Zina Rupp<br>Sharon Kammholz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">920</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Frank Schäfer-Rathert<br>Noel Erener</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+4</td><td class="elo" style="font-size:1rem">916</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Daniel Stillig<br>Christopher Mencke</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">927</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>David Schott<br>Lars Wegener</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">936</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Christoph Lehmann<br>Michael Marcks</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">946</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Nadine Fleck<br>Miriam Grunau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">961</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Dennis Belle<br>Viktor Vasilev</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-7</td><td class="elo" style="font-size:1rem">967</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Ahmad Alsayed</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">908</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Benedikt Küppers</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">918</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Ilia Plitov</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">929</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Celine Hofer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">941</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Dennis Trepkau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">952</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Frank Schäfer-Rathert</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">963</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Janin Block</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">975</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Jonas Spitzmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">988</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Silvia Leidig</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Farhad Azizi<br>Manssur Mohammed Gani</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">954</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Paul Scheffler<br>Niels Porsiel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">966</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Pia-Louise Claußen<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">976</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Abdullah Mariam<br>Nora Waning</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">988</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Michael Prinz<br>Knuth Strecker</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Loredana Pinna<br>Katharina Vierk</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
+        <tbody><tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Alexander Graf<br>Maximilian Krippendorf</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">911</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Amr Alloush<br>Yousef Khan</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">904</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-3</td><td class="elo" style="font-size:1rem">907</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Steven Falkert<br>Patrick Naujoks</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">906</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Zina Rupp<br>Sharon Kammholz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">920</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Frank Schäfer-Rathert<br>Noel Erener</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+4</td><td class="elo" style="font-size:1rem">916</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Daniel Stillig<br>Christopher Mencke</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">927</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">David Schott<br>Lars Wegener</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">936</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Christoph Lehmann<br>Michael Marcks</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">946</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Nadine Fleck<br>Miriam Grunau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">961</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Dennis Belle<br>Viktor Vasilev</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-7</td><td class="elo" style="font-size:1rem">967</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Ahmad Alsayed</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">908</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Benedikt Küppers</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">918</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Ilia Plitov</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">929</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Celine Hofer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">941</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Dennis Trepkau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">952</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Frank Schäfer-Rathert</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">963</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Janin Block</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">975</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Jonas Spitzmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">988</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Silvia Leidig</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Farhad Azizi<br>Manssur Mohammed Gani</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">954</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Paul Scheffler<br>Niels Porsiel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">966</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Pia-Louise Claußen<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">976</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Abdullah Mariam<br>Nora Waning</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">988</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Michael Prinz<br>Knuth Strecker</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Loredana Pinna<br>Katharina Vierk</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -288,18 +331,18 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE EINZELSPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div class="table-responsive">
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Ahmad Alsayed</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">908</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Benedikt Küppers</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">918</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Ilia Plitov</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">929</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Celine Hofer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">941</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Dennis Trepkau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">952</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem">2. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Frank Schäfer-Rathert</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">963</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Janin Block</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">975</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Jonas Spitzmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">988</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem">1. Kixx Einzel 2024</td><td style="color:var(--muted)">Einzel</td><td>–</td><td>Silvia Leidig</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
+        <tbody><tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Ahmad Alsayed</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+3</td><td class="elo" style="font-size:1rem">908</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Benedikt Küppers</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">918</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Ilia Plitov</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">929</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Celine Hofer</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">941</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Dennis Trepkau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">952</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">25.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">2. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Frank Schäfer-Rathert</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">963</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Janin Block</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">975</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Jonas Spitzmann</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">988</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">18.07.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">1. Kixx Einzel 2024</td><td style="color:var(--muted);white-space:nowrap">Einzel</td><td style="white-space:nowrap">–</td><td style="white-space:nowrap">Silvia Leidig</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -311,31 +354,31 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE DOPPELSPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div class="table-responsive">
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Alexander Graf<br>Maximilian Krippendorf</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">911</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Amr Alloush<br>Yousef Khan</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">904</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-3</td><td class="elo" style="font-size:1rem">907</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Steven Falkert<br>Patrick Naujoks</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">906</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem">6. Kixx MiDo</td><td style="color:var(--muted)">Doppel</td><td>Tom Bigalke Garcia</td><td>Zina Rupp<br>Sharon Kammholz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">920</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Frank Schäfer-Rathert<br>Noel Erener</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+4</td><td class="elo" style="font-size:1rem">916</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Daniel Stillig<br>Christopher Mencke</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">927</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>David Schott<br>Lars Wegener</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">936</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Christoph Lehmann<br>Michael Marcks</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">946</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Nadine Fleck<br>Miriam Grunau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">961</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem">Mittwochsdoppel KIXX</td><td style="color:var(--muted)">Doppel</td><td>Sarah Schäfer</td><td>Dennis Belle<br>Viktor Vasilev</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-7</td><td class="elo" style="font-size:1rem">967</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Farhad Azizi<br>Manssur Mohammed Gani</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">954</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Paul Scheffler<br>Niels Porsiel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">966</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Pia-Louise Claußen<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">976</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Abdullah Mariam<br>Nora Waning</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">988</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Michael Prinz<br>Knuth Strecker</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
-<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted)">Doppel</td><td>Philipp Köhnken</td><td>Loredana Pinna<br>Katharina Vierk</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
+        <tbody><tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Alexander Graf<br>Maximilian Krippendorf</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">911</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Amr Alloush<br>Yousef Khan</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+8</td><td class="elo" style="font-size:1rem">904</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Marius Meyer-Hemme<br>Björn Krutzki</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-3</td><td class="elo" style="font-size:1rem">907</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Steven Falkert<br>Patrick Naujoks</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">906</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">12.02.2025</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">6. Kixx MiDo</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Tom Bigalke Garcia</td><td style="white-space:nowrap">Zina Rupp<br>Sharon Kammholz</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-13</td><td class="elo" style="font-size:1rem">920</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Frank Schäfer-Rathert<br>Noel Erener</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change pos">+4</td><td class="elo" style="font-size:1rem">916</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Daniel Stillig<br>Christopher Mencke</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">927</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">David Schott<br>Lars Wegener</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-9</td><td class="elo" style="font-size:1rem">936</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Christoph Lehmann<br>Michael Marcks</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-10</td><td class="elo" style="font-size:1rem">946</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Nadine Fleck<br>Miriam Grunau</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-15</td><td class="elo" style="font-size:1rem">961</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">04.12.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Mittwochsdoppel KIXX</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Sarah Schäfer</td><td style="white-space:nowrap">Dennis Belle<br>Viktor Vasilev</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-7</td><td class="elo" style="font-size:1rem">967</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Farhad Azizi<br>Manssur Mohammed Gani</td><td class="num" style="color:var(--up);font-weight:700">✓</td><td class="change pos">+14</td><td class="elo" style="font-size:1rem">954</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Paul Scheffler<br>Niels Porsiel</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">966</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Pia-Louise Claußen<br>Alina Porechina</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">976</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Abdullah Mariam<br>Nora Waning</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-11</td><td class="elo" style="font-size:1rem">988</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Michael Prinz<br>Knuth Strecker</td><td class="num" style="color:var(--down);font-weight:700">✗</td><td class="change neg">-12</td><td class="elo" style="font-size:1rem">1000</td></tr>
+<tr><td style="color:var(--muted);white-space:nowrap">15.05.2024</td><td style="color:var(--muted);font-size:0.78rem;white-space:nowrap">Kixx Mittwochsdoppel #25</td><td style="color:var(--muted);white-space:nowrap">Doppel</td><td style="white-space:nowrap">Philipp Köhnken</td><td style="white-space:nowrap">Loredana Pinna<br>Katharina Vierk</td><td class="num" style="color:var(--muted);font-weight:700">=</td><td class="change neu">0</td><td class="elo" style="font-size:1rem">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert 06.07.2026 10:26</footer>
+  <footer>TFVHH ELO Rangliste · generiert 08.07.2026 16:10</footer>
 </div>
 
 <script>
@@ -344,23 +387,23 @@ const chartDefaults = {
   maintainAspectRatio: false,
   interaction: { intersect: false, mode: 'index' },
   plugins: {
-    legend: { labels: { color: '#94a3b8', font: { family: 'DM Sans', size: 12 } } },
+    legend: { labels: { color: '#555555', font: { family: 'DM Sans', size: 12 } } },
     tooltip: {
-      backgroundColor: '#161a23',
-      borderColor: '#252a38',
+      backgroundColor: '#ffffff',
+      borderColor: '#dddddd',
       borderWidth: 1,
-      titleColor: '#e2e8f0',
-      bodyColor: '#94a3b8',
+      titleColor: '#1c1c1c',
+      bodyColor: '#555555',
     }
   },
   scales: {
     x: {
-      ticks: { color: '#4a5568', maxTicksLimit: 10, font: { size: 11 } },
-      grid: { color: '#1a1f2e' },
+      ticks: { color: '#8a8a8a', maxTicksLimit: 10, font: { size: 11 } },
+      grid: { color: '#ececea' },
     },
     y: {
-      ticks: { color: '#4a5568', font: { size: 11 } },
-      grid: { color: '#1a1f2e' },
+      ticks: { color: '#8a8a8a', font: { size: 11 } },
+      grid: { color: '#ececea' },
     }
   }
 };
