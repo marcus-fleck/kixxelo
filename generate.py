@@ -209,6 +209,49 @@ canvas { width: 100% !important; height: 100% !important; }
 .stat-card .value { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 1px; }
 
 footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.78rem; color: var(--muted); }
+
+/* ── Mobile (Hochkant) ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .wrap { padding: 0 12px; }
+
+  header { padding: 18px 0 14px; margin-bottom: 24px; }
+  header .inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+  header h1 { font-size: 1.9rem; letter-spacing: 1px; }
+  .timestamp { margin-left: 0; }
+
+  .tabs { gap: 2px; }
+  .tab { padding: 7px 12px; font-size: 0.8rem; }
+
+  .search-wrap input { max-width: none; }
+
+  /* Ranking-Tabelle */
+  thead th { padding: 9px 8px; font-size: 0.65rem; }
+  td { padding: 9px 8px; }
+  td.rank { font-size: 1rem; width: 30px; }
+  td.elo { font-size: 1.05rem; }
+  td.matches { font-size: 0.78rem; }
+
+  .player-header h2 { font-size: 2.1rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .stat-card { padding: 12px; }
+  .stat-card .value { font-size: 1.4rem; }
+
+  .chart-card { padding: 14px; }
+  .chart-wrap { height: 180px; }
+
+  /* Match-Historie-Tabelle: Turnier & Art ausblenden, Rest kompakter */
+  .chart-card table { font-size: 0.76rem !important; }
+  .chart-card table th, .chart-card table td { padding: 7px 6px; white-space: nowrap; }
+  .chart-card table th:nth-child(2), .chart-card table td:nth-child(2),
+  .chart-card table th:nth-child(3), .chart-card table td:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  header h1 { font-size: 1.6rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
 """
 
 # ── Daten laden ─────────────────────────────────────────────────────────────
