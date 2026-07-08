@@ -395,7 +395,7 @@ index_html = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TFVHH ELO Rangliste</title>
+<title>KIXX ELO Rangliste</title>
 <style>{SHARED_CSS}</style>
 </head>
 <body>
@@ -434,7 +434,7 @@ index_html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert {generated_at}</footer>
+  <footer>KIXX ELO Rangliste · generiert {generated_at}</footer>
 </div>
 
 <script>
@@ -663,7 +663,7 @@ for pid, elo_row in elo_all.items():
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert {generated_at}</footer>
+  <footer>KIXX ELO Rangliste · generiert {generated_at}</footer>
 </div>
 
 <script>
@@ -1143,7 +1143,7 @@ index_html = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TFVHH ELO Rangliste</title>
+<title>KIXX ELO Rangliste</title>
 <style>{SHARED_CSS}</style>
 </head>
 <body>
@@ -1182,7 +1182,7 @@ index_html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert {generated_at}</footer>
+  <footer>KIXX ELO Rangliste · generiert {generated_at}</footer>
 </div>
 
 <script>
@@ -1411,7 +1411,7 @@ for pid, elo_row in elo_all.items():
     </div>
   </div>
 
-  <footer>TFVHH ELO Rangliste · generiert {generated_at}</footer>
+  <footer>KIXX ELO Rangliste · generiert {generated_at}</footer>
 </div>
 
 <script>
