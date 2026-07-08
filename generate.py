@@ -245,9 +245,9 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
 
   .search-wrap input { max-width: none; }
 
-  thead th { padding: 9px 12px; font-size: 0.65rem; }
-  td { padding: 9px 12px; }
-  td.rank { font-size: 1rem; width: 30px; }
+  thead th { padding: 9px 6px; font-size: 0.65rem; }
+  td { padding: 9px 6px; }
+  td.rank { font-size: 1rem; width: 24px; }
   td.elo { font-size: 1.05rem; }
   td.matches { font-size: 0.78rem; }
 
