@@ -26,25 +26,23 @@ generated_at = datetime.now().strftime("%d.%m.%Y %H:%M")
 
 SHARED_CSS = """
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg:        #111111;
-  --surface:   #1c1c1c;
-  --border:    #2e2e2e;
-  --accent:    #e8460a;
-  --accent2:   #ff8c42;
-  --text:      #f0f0f0;
-  --muted:     #777777;
-  --up:        #5cb85c;
-  --down:      #d9534f;
+  /* ── Helles Theme für Einbettung in kixx-hamburg.de ──
+     Falls die Töne nicht exakt passen: nur diese Werte anpassen. */
+  --bg: #ffffff;        /* Seitenhintergrund (Jimdo-Contentbereich) */
+  --surface: #f6f6f4;   /* Karten & Tabellenflächen */
+  --border: #e2e2e0;
+  --accent: #e8460a;    /* Kixx-Orange */
+  --accent2: #c85500;   /* dunkleres Orange, kontrastsicher auf Weiß */
+  --text: #1c1c1c;
+  --muted: #6d6d6d;
+  --up: #2e8b57;
+  --down: #c0392b;
   --font-display: 'Bebas Neue', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--text);
@@ -53,17 +51,6 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-
-/* Grain overlay */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.6;
-}
-
 .wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
 /* Header */
@@ -95,38 +82,30 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 }
 .tab:hover { color: var(--text); background: var(--surface); }
 .tab.active { background: var(--surface); color: var(--accent); border-color: var(--border); }
-
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
 
-/* FIX: Zuverlässige Scroll-Container für Tabellen auf Mobilgeräten */
-.panel-wrap, .table-responsive {
+/* Ranglisten-Tabelle (index): KEINE min-width – muss ohne Scrollen
+   auf schmale Displays passen. */
+.panel-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0 8px 8px 8px;
+  overflow: hidden;
+}
+.panel-wrap table { width: 100%; }
+
+/* Detailtabelle (Spielerseite): 8 Spalten -> horizontal scrollen ist ok. */
+.table-responsive {
   display: block;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-
-.panel-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0 8px 8px 8px;
-}
-
-/* FIX: Mindestbreiten erzwingen das Scrollen, wenn der Bildschirm zu klein wird */
-.panel-wrap table {
-  width: 100%;
-  min-width: 500px; /* Sichert Platz für die 4 Hauptspalten auf Mobilgeräten */
-}
-
-.table-responsive table {
-  width: 100%;
-  min-width: 850px; /* Sichert Platz für alle 8 Detailspalten auf der Spielerseite */
-}
+.table-responsive table { width: 100%; min-width: 850px; }
 
 table { border-collapse: collapse; }
-
 thead th {
   padding: 12px 16px;
   text-align: left;
@@ -134,7 +113,7 @@ thead th {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--muted);
-  background: var(--bg);
+  background: #ececea;
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
@@ -145,7 +124,7 @@ tbody tr {
   cursor: pointer;
 }
 tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: rgba(232,200,71,0.04); }
+tbody tr:hover { background: rgba(232,70,10,0.06); }
 td { padding: 11px 16px; }
 td.rank {
   font-family: var(--font-display);
@@ -153,10 +132,10 @@ td.rank {
   color: var(--muted);
   width: 52px;
 }
-td.rank.gold   { color: #f5c842; }
-td.rank.silver { color: #adb5c7; }
-td.rank.bronze { color: #cd7f45; }
-td.name { font-weight: 500; white-space: nowrap; }
+td.rank.gold { color: #c9950c; }
+td.rank.silver { color: #7f8a99; }
+td.rank.bronze { color: #b06a35; }
+td.name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 td.name a { color: var(--text); text-decoration: none; }
 td.name a:hover { color: var(--accent); }
 td.elo {
@@ -178,7 +157,7 @@ td.matches { text-align: right; color: var(--muted); font-size: 0.85rem; }
   width: 100%;
   max-width: 340px;
   padding: 9px 14px;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--text);
@@ -204,9 +183,9 @@ td.matches { text-align: right; color: var(--muted); font-size: 0.85rem; }
   font-weight: 600;
   letter-spacing: 0.5px;
 }
-.badge-combined { background: rgba(232,70,10,0.15); color: var(--accent); border: 1px solid rgba(232,70,10,0.4); }
-.badge-single   { background: rgba(255,140,66,0.12); color: var(--accent2); border: 1px solid rgba(255,140,66,0.3); }
-.badge-double   { background: rgba(92,184,92,0.12); color: var(--up); border: 1px solid rgba(92,184,92,0.3); }
+.badge-combined { background: rgba(232,70,10,0.10); color: var(--accent); border: 1px solid rgba(232,70,10,0.35); }
+.badge-single { background: rgba(200,85,0,0.08); color: var(--accent2); border: 1px solid rgba(200,85,0,0.3); }
+.badge-double { background: rgba(46,139,87,0.08); color: var(--up); border: 1px solid rgba(46,139,87,0.3); }
 
 .chart-card {
   background: var(--surface);
@@ -231,38 +210,35 @@ canvas { width: 100% !important; height: 100% !important; }
 
 footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.78rem; color: var(--muted); }
 
-/* ── Mobile (Hochkant) ─────────────────────────────────────────────────── */
+/* ── Mobile (Hochformat) ─────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .wrap { padding: 0 12px; }
-
-  header { padding: 18px 0 14px; margin-bottom: 24px; }
+  .wrap { padding: 0 10px; }
+  header { padding: 18px 0 14px; margin-bottom: 20px; }
   header .inner { flex-direction: column; align-items: flex-start; gap: 4px; }
   header h1 { font-size: 1.9rem; letter-spacing: 1px; }
   .timestamp { margin-left: 0; }
-
   .tabs { gap: 2px; }
   .tab { padding: 7px 12px; font-size: 0.8rem; }
-
   .search-wrap input { max-width: none; }
 
-  thead th { padding: 9px 6px; font-size: 0.65rem; }
-  td { padding: 9px 6px; }
-  td.rank { font-size: 1rem; width: 24px; }
-  td.elo { font-size: 1.05rem; }
-  td.matches { font-size: 0.78rem; }
+  /* Enge Spalten: 4 Spalten passen ohne horizontales Scrollen */
+  thead th { padding: 8px 5px; font-size: 0.62rem; letter-spacing: 0.8px; }
+  td { padding: 8px 5px; }
+  td.rank { font-size: 0.95rem; width: 30px; padding-left: 8px; }
+  td.name { max-width: 0; width: 100%; }  /* nimmt Restbreite, kürzt mit … */
+  td.elo { font-size: 1rem; letter-spacing: 0; }
+  td.matches { font-size: 0.72rem; padding-right: 8px; }
 
   .player-header h2 { font-size: 2.1rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .stat-card { padding: 12px; }
   .stat-card .value { font-size: 1.4rem; }
-
   .chart-card { padding: 14px; }
   .chart-wrap { height: 180px; }
 }
-
 @media (max-width: 380px) {
   header h1 { font-size: 1.6rem; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  thead th { font-size: 0.58rem; }
 }
 """
 
@@ -1444,23 +1420,23 @@ const chartDefaults = {{
   maintainAspectRatio: false,
   interaction: {{ intersect: false, mode: 'index' }},
   plugins: {{
-    legend: {{ labels: {{ color: '#94a3b8', font: {{ family: 'DM Sans', size: 12 }} }} }},
+    legend: {{ labels: {{ color: '#555555', font: {{ family: 'DM Sans', size: 12 }} }} }},
     tooltip: {{
-      backgroundColor: '#161a23',
-      borderColor: '#252a38',
+      backgroundColor: '#ffffff',
+      borderColor: '#dddddd',
       borderWidth: 1,
-      titleColor: '#e2e8f0',
-      bodyColor: '#94a3b8',
+      titleColor: '#1c1c1c',
+      bodyColor: '#555555',
     }}
   }},
   scales: {{
     x: {{
-      ticks: {{ color: '#4a5568', maxTicksLimit: 10, font: {{ size: 11 }} }},
-      grid: {{ color: '#1a1f2e' }},
+      ticks: {{ color: '#8a8a8a', maxTicksLimit: 10, font: {{ size: 11 }} }},
+      grid: {{ color: '#ececea' }},
     }},
     y: {{
-      ticks: {{ color: '#4a5568', font: {{ size: 11 }} }},
-      grid: {{ color: '#1a1f2e' }},
+      ticks: {{ color: '#8a8a8a', font: {{ size: 11 }} }},
+      grid: {{ color: '#ececea' }},
     }}
   }}
 }};
