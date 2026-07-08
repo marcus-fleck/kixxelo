@@ -239,12 +239,56 @@ footer { margin-top: 60px; padding: 24px 0; border-top: 1px solid var(--border);
   .chart-card { padding: 14px; }
   .chart-wrap { height: 180px; }
 
-  /* Match-Historie-Tabelle: Turnier & Art ausblenden, Rest kompakter */
-  .chart-card table { font-size: 0.76rem !important; }
-  .chart-card table th, .chart-card table td { padding: 7px 6px; white-space: nowrap; }
-  .chart-card table th:nth-child(2), .chart-card table td:nth-child(2),
-  .chart-card table th:nth-child(3), .chart-card table td:nth-child(3) {
-    display: none;
+  /* NEU: Match-Historie-Tabelle komplett in responsive Karten umbauen */
+  .chart-card table, 
+  .chart-card thead, 
+  .chart-card tbody, 
+  .chart-card th, 
+  .chart-card td, 
+  .chart-card tr { 
+    display: block; 
+    width: 100%; 
+  }
+  
+  /* Blendet die Tabellen-Überschriften auf dem Smartphone aus */
+  .chart-card thead tr { 
+    position: absolute; 
+    top: -9999px; 
+    left: -9999px; 
+  }
+  
+  /* Jedes Match wird eine abgetrennte Karte */
+  .chart-card tr { 
+    border-bottom: 1px solid var(--border); 
+    padding: 12px 0; 
+  }
+  .chart-card tr:last-child {
+    border-bottom: none;
+  }
+  
+  /* Zeilen innerhalb der Karte formatieren */
+  .chart-card td { 
+    border: none; 
+    position: relative; 
+    padding-left: 40% !important; 
+    text-align: right !important; 
+    padding-top: 5px !important; 
+    padding-bottom: 5px !important; 
+    font-size: 0.85rem !important;
+    white-space: normal !important; /* Verhindert das Herausragen von langen Namen */
+  }
+  
+  /* Generiert die Beschriftungen dynamisch links am Rand */
+  .chart-card td:before { 
+    position: absolute; 
+    top: 50%; 
+    left: 4px; 
+    transform: translateY(-50%); 
+    width: 35%; 
+    text-align: left; 
+    font-weight: 600; 
+    color: var(--muted); 
+    content: attr(data-label); 
   }
 }
 
@@ -549,6 +593,8 @@ for pid, elo_row in elo_all.items():
     recent_all    = get_recent_matches(pid, limit=30)
     recent_single = get_recent_matches(pid, limit=30, match_type=1)
     recent_double = get_recent_matches(pid, limit=30, match_type=2)
+    
+    # NEU: Diese Funktion schreibt nun data-label Attribute in das HTML
     def build_match_rows(matches):
         parts = []
         for m in matches:
@@ -567,14 +613,14 @@ for pid, elo_row in elo_all.items():
             comp_short = m['comp'].replace('Offenes Doppel', 'OD').replace('Offenes Einzel', 'OE')
             parts.append(
                 f'<tr>'
-                f'<td style="color:var(--muted);white-space:nowrap">{m["date"]}</td>'
-                f'<td style="color:var(--muted);font-size:0.78rem">{comp_short}</td>'
-                f'<td style="color:var(--muted)">{m["type"]}</td>'
-                f'<td>{partner_str}</td>'
-                f'<td>{opponent_str}</td>'
-                f'<td class="num" style="color:{result_color};font-weight:700">{result_str}</td>'
-                f'<td class="change {change_cls}">{change_str}</td>'
-                f'<td class="elo" style="font-size:1rem">{m["elo_after"]}</td>'
+                f'<td data-label="Datum" style="color:var(--muted);white-space:nowrap">{m["date"]}</td>'
+                f'<td data-label="Turnier" style="color:var(--muted);font-size:0.78rem">{comp_short}</td>'
+                f'<td data-label="Art" style="color:var(--muted)">{m["type"]}</td>'
+                f'<td data-label="Partner">{partner_str}</td>'
+                f'<td data-label="Gegner">{opponent_str}</td>'
+                f'<td data-label="Erg." class="num" style="color:{result_color};font-weight:700">{result_str}</td>'
+                f'<td data-label="ELO Δ" class="change {change_cls}">{change_str}</td>'
+                f'<td data-label="ELO" class="elo" style="font-size:1rem">{m["elo_after"]}</td>'
                 f'</tr>'
             )
         return '\n'.join(parts) if parts else '<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:20px">Keine Spiele gefunden</td></tr>'
@@ -648,8 +694,8 @@ for pid, elo_row in elo_all.items():
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE SPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div>
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
         <tbody>{matches_rows_all}</tbody>
       </table></div>
@@ -663,8 +709,8 @@ for pid, elo_row in elo_all.items():
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE EINZELSPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div>
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
         <tbody>{matches_rows_single}</tbody>
       </table></div>
@@ -678,8 +724,8 @@ for pid, elo_row in elo_all.items():
     </div>
     <div class="chart-card" style="margin-top:8px">
       <h3>LETZTE DOPPELSPIELE</h3>
-      <div style="overflow-x:auto">
-      <table style="font-size:0.84rem">
+      <div>
+      <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
         <tbody>{matches_rows_double}</tbody>
       </table></div>
