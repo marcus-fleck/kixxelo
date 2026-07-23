@@ -216,11 +216,29 @@ def get_rankings():
     return cats
 
 def get_match_counts():
+    """Gesamtzahl der Spiele je Spieler."""
     cur.execute("""
         SELECT player_id, COUNT(*) as cnt
         FROM played_matches GROUP BY player_id
     """)
     return {r[0]: r[1] for r in cur.fetchall()}
+
+def get_match_counts_by_type():
+    """Spiele je Spieler, getrennt nach Einzel (type=1) und Doppel (type=2)."""
+    cur.execute("""
+        SELECT pm.player_id, m.type, COUNT(*) AS cnt
+        FROM played_matches pm
+        JOIN matches m ON m.id = pm.match_id
+        GROUP BY pm.player_id, m.type
+    """)
+    single, double = {}, {}
+    for r in cur.fetchall():
+        pid, mtype, cnt = r[0], r[1], r[2]
+        if mtype == 1:
+            single[pid] = single.get(pid, 0) + cnt
+        elif mtype == 2:
+            double[pid] = double.get(pid, 0) + cnt
+    return single, double
 
 def get_recent_matches(player_id, limit=30, match_type=None):
     type_filter = "AND m.type = ?" if match_type else ""
@@ -321,10 +339,19 @@ def get_elo_history(player_id, match_type=None):
 
 rankings = get_rankings()
 match_counts = get_match_counts()
+single_counts, double_counts = get_match_counts_by_type()
+
+# Pro Tab die passende Zählung: Gesamt / nur Einzel / nur Doppel
+COUNTS_BY_COL = {
+    'combined': match_counts,
+    'single':   single_counts,
+    'double':   double_counts,
+}
 
 # ── Index-Seite ──────────────────────────────────────────────────────────────
 
 def render_table(rows, col):
+    counts = COUNTS_BY_COL[col]
     html = []
     html.append('<table>')
     html.append('<thead><tr>'
@@ -335,7 +362,7 @@ def render_table(rows, col):
                 '</tr></thead><tbody>')
     for i, r in enumerate(rows, 1):
         rank_cls = {1: 'gold', 2: 'silver', 3: 'bronze'}.get(i, '')
-        mc = match_counts.get(r['id'], 0)
+        mc = counts.get(r['id'], 0)
         html.append(
             f'<tr onclick="location.href=\'players/{r["id"]}.html\'">'
             f'<td class="rank {rank_cls}">{i}</td>'
@@ -442,6 +469,8 @@ for pid, elo_row in elo_all.items():
 
     name = f"{player['firstName']} {player['lastName']}"
     mc = match_counts.get(pid, 0)
+    mc_s = single_counts.get(pid, 0)
+    mc_d = double_counts.get(pid, 0)
 
     combined_labels = []
     combined_data = []
@@ -564,8 +593,8 @@ for pid, elo_row in elo_all.items():
       <div class="value" style="color:var(--up)">{elo_d}</div>
     </div>
     <div class="stat-card">
-      <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">{mc}</div>
+      <div class="label" id="statMatchesLabel">Spiele</div>
+      <div class="value" id="statMatches" style="color:var(--text)">{mc}</div>
     </div>
   </div>
 
@@ -674,11 +703,23 @@ new Chart(document.getElementById('chartDouble'), {{
   }}] }}, options: chartDefaults
 }});
 
+// Spiele-Zähler passend zum aktiven Tab
+const matchCountsByTab = {{
+  all:    {{ count: {mc},   label: 'Spiele' }},
+  single: {{ count: {mc_s}, label: 'Spiele Einzel' }},
+  double: {{ count: {mc_d}, label: 'Spiele Doppel' }}
+}};
+
 function switchPlayerTab(id, btn) {{
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   document.getElementById('ptab-' + id).classList.add('active');
   btn.classList.add('active');
+  const c = matchCountsByTab[id];
+  if (c) {{
+    document.getElementById('statMatches').textContent = c.count;
+    document.getElementById('statMatchesLabel').textContent = c.label;
+  }}
 }}
 </script>
 </body>
