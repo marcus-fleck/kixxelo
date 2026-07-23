@@ -188,7 +188,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 20.07.2026 09:17</span>
+      <span class="timestamp">Stand: 23.07.2026 21:50</span>
     </div>
   </header>
 
@@ -199,7 +199,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="badges">
       <span class="badge badge-combined">Gesamt #735</span>
       <span class="badge badge-single">Einzel #-</span>
-      <span class="badge badge-double">Doppel #718</span>
+      <span class="badge badge-double">Doppel #716</span>
     </div>
   </div>
 
@@ -217,8 +217,8 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="value" style="color:var(--up)">977</div>
     </div>
     <div class="stat-card">
-      <div class="label">Spiele</div>
-      <div class="value" style="color:var(--text)">6</div>
+      <div class="label" id="statMatchesLabel">Spiele</div>
+      <div class="value" id="statMatches" style="color:var(--text)">6</div>
     </div>
   </div>
 
@@ -283,7 +283,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 20.07.2026 09:17</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
 </div>
 
 <script>
@@ -337,11 +337,23 @@ new Chart(document.getElementById('chartDouble'), {
   }] }, options: chartDefaults
 });
 
+// Spiele-Zähler passend zum aktiven Tab
+const matchCountsByTab = {
+  all:    { count: 6,   label: 'Spiele' },
+  single: { count: 0, label: 'Spiele Einzel' },
+  double: { count: 6, label: 'Spiele Doppel' }
+};
+
 function switchPlayerTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   document.getElementById('ptab-' + id).classList.add('active');
   btn.classList.add('active');
+  const c = matchCountsByTab[id];
+  if (c) {
+    document.getElementById('statMatches').textContent = c.count;
+    document.getElementById('statMatchesLabel').textContent = c.label;
+  }
 }
 </script>
 </body>
