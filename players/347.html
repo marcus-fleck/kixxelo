@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,15 +242,15 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Frank Schäfer-Rathert<br>Silvia Leidig</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">992</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger<br>Joris Riechmann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Sanna Dibowski<br>David Hansen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">993</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Luca Züwering<br>Alexander Zahn</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">983</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Ivo Pinheiro<br>Caroline Vogler</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">991</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger<br>Joris Riechmann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">984</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Nathalie Porsiel<br>Myrna Sieden</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">971</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Mirko Strunk<br>Jonas Spitzmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">984</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Philipp Köhnken<br>Florian Schäfers</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-16</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Frank Schäfer-Rathert <span class="oe">(983)</span><br>Silvia Leidig <span class="oe">(804)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">992</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger <span class="oe">(815)</span><br>Joris Riechmann <span class="oe">(852)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Sanna Dibowski <span class="oe">(1175)</span><br>David Hansen <span class="oe">(1048)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">993</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Luca Züwering <span class="oe">(927)</span><br>Alexander Zahn <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">983</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Ivo Pinheiro <span class="oe">(1196)</span><br>Caroline Vogler <span class="oe">(1027)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">991</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger <span class="oe">(822)</span><br>Joris Riechmann <span class="oe">(859)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">984</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Nathalie Porsiel <span class="oe">(1025)</span><br>Myrna Sieden <span class="oe">(979)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">971</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Mirko Strunk <span class="oe">(932)</span><br>Jonas Spitzmann <span class="oe">(946)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">984</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Philipp Köhnken <span class="oe">(862)</span><br>Florian Schäfers <span class="oe">(878)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-16</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -276,20 +280,20 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Frank Schäfer-Rathert<br>Silvia Leidig</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">992</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger<br>Joris Riechmann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Sanna Dibowski<br>David Hansen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">993</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Luca Züwering<br>Alexander Zahn</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">983</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Ivo Pinheiro<br>Caroline Vogler</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">991</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger<br>Joris Riechmann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">984</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Nathalie Porsiel<br>Myrna Sieden</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">971</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Mirko Strunk<br>Jonas Spitzmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">984</td></tr>
-<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Philipp Köhnken<br>Florian Schäfers</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-16</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Frank Schäfer-Rathert <span class="oe">(983)</span><br>Silvia Leidig <span class="oe">(804)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">992</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger <span class="oe">(815)</span><br>Joris Riechmann <span class="oe">(852)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Sanna Dibowski <span class="oe">(1175)</span><br>David Hansen <span class="oe">(1048)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">993</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Luca Züwering <span class="oe">(927)</span><br>Alexander Zahn <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">983</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Ivo Pinheiro <span class="oe">(1196)</span><br>Caroline Vogler <span class="oe">(1027)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-8</td><td class="elo">991</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Lasse Geiger <span class="oe">(822)</span><br>Joris Riechmann <span class="oe">(859)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+7</td><td class="elo">984</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Nathalie Porsiel <span class="oe">(1025)</span><br>Myrna Sieden <span class="oe">(979)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">971</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Mirko Strunk <span class="oe">(932)</span><br>Jonas Spitzmann <span class="oe">(946)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">984</td></tr>
+<tr><td class="m-date">01.03.2025</td><td class="m-comp">Kixx Sado</td><td class="m-type">Doppel</td><td class="m-partner">Julian Brederlow</td><td class="m-opp">Philipp Köhnken <span class="oe">(862)</span><br>Florian Schäfers <span class="oe">(878)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-16</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

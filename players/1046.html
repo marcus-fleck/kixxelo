@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,12 +242,12 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Tim Kurzweg<br>Emilia Condoi</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+4</td><td class="elo">967</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Paul Jendrasch<br>Mandy Reimann</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">971</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Klaas Lohmann<br>Milan Paul</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Moritz Graefen<br>Joris Riechmann</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">987</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Christoph Lerognon<br>Till Schütt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-17</td><td class="elo">1005</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Yannis Christiansen<br>Stefan Rau</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Tim Kurzweg <span class="oe">(842)</span><br>Emilia Condoi <span class="oe">(899)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+4</td><td class="elo">967</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Paul Jendrasch <span class="oe">(1156)</span><br>Mandy Reimann <span class="oe">(933)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">971</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Klaas Lohmann <span class="oe">(1234)</span><br>Milan Paul <span class="oe">(1097)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Moritz Graefen <span class="oe">(947)</span><br>Joris Riechmann <span class="oe">(1147)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">987</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Christoph Lerognon <span class="oe">(1051)</span><br>Till Schütt <span class="oe">(974)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-17</td><td class="elo">1005</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Yannis Christiansen <span class="oe">(971)</span><br>Stefan Rau <span class="oe">(909)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -273,17 +277,17 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Tim Kurzweg<br>Emilia Condoi</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+4</td><td class="elo">967</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Paul Jendrasch<br>Mandy Reimann</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">971</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Klaas Lohmann<br>Milan Paul</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Moritz Graefen<br>Joris Riechmann</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">987</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Christoph Lerognon<br>Till Schütt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-17</td><td class="elo">1005</td></tr>
-<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Yannis Christiansen<br>Stefan Rau</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Tim Kurzweg <span class="oe">(842)</span><br>Emilia Condoi <span class="oe">(899)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+4</td><td class="elo">967</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Paul Jendrasch <span class="oe">(1156)</span><br>Mandy Reimann <span class="oe">(933)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">971</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Klaas Lohmann <span class="oe">(1234)</span><br>Milan Paul <span class="oe">(1097)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Moritz Graefen <span class="oe">(947)</span><br>Joris Riechmann <span class="oe">(1147)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-4</td><td class="elo">987</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Christoph Lerognon <span class="oe">(1051)</span><br>Till Schütt <span class="oe">(974)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-17</td><td class="elo">1005</td></tr>
+<tr><td class="m-date">16.05.2026</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Abdullah Mariam</td><td class="m-opp">Yannis Christiansen <span class="oe">(971)</span><br>Stefan Rau <span class="oe">(909)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

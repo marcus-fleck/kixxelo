@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,12 +242,12 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Finn Meyer<br>Radostina Lyubomirova</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">972</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann<br>Daniel Stillig</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">961</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Minyoung Bai<br>Ruben Heinrich</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">967</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Ghulam Hoffmann<br>Sören Schlotfeldt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">978</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Wiebke von Osten<br>Puyan Sattarian</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann<br>Daniel Stillig</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Finn Meyer <span class="oe">(1354)</span><br>Radostina Lyubomirova <span class="oe">(1034)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">972</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann <span class="oe">(981)</span><br>Daniel Stillig <span class="oe">(900)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">961</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Minyoung Bai <span class="oe">(1365)</span><br>Ruben Heinrich <span class="oe">(983)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">967</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Ghulam Hoffmann <span class="oe">(970)</span><br>Sören Schlotfeldt <span class="oe">(1028)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">978</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Wiebke von Osten <span class="oe">(1007)</span><br>Puyan Sattarian <span class="oe">(1272)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann <span class="oe">(924)</span><br>Daniel Stillig <span class="oe">(843)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -273,17 +277,17 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Finn Meyer<br>Radostina Lyubomirova</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">972</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann<br>Daniel Stillig</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">961</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Minyoung Bai<br>Ruben Heinrich</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">967</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Ghulam Hoffmann<br>Sören Schlotfeldt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">978</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Wiebke von Osten<br>Puyan Sattarian</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann<br>Daniel Stillig</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Finn Meyer <span class="oe">(1354)</span><br>Radostina Lyubomirova <span class="oe">(1034)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">972</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann <span class="oe">(981)</span><br>Daniel Stillig <span class="oe">(900)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">961</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Minyoung Bai <span class="oe">(1365)</span><br>Ruben Heinrich <span class="oe">(983)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">967</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Ghulam Hoffmann <span class="oe">(970)</span><br>Sören Schlotfeldt <span class="oe">(1028)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">978</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Wiebke von Osten <span class="oe">(1007)</span><br>Puyan Sattarian <span class="oe">(1272)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">08.02.2025</td><td class="m-comp">SaDo Special</td><td class="m-type">Doppel</td><td class="m-partner">Anja Schulze</td><td class="m-opp">Mandy Reimann <span class="oe">(924)</span><br>Daniel Stillig <span class="oe">(843)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

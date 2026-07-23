@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,16 +242,16 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paul Scheffler<br>Finn Jonathan Gröning</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">931</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paula Köppe<br>Jonas Langwald</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+6</td><td class="elo">925</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Myrna Sieden<br>Lena Bielfeldt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">938</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Sarah Walter<br>Valentina Schmitz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">949</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Christian Huber<br>Wladimir Bublitz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">963</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Katrin Leydel<br>Jürgen Leydel</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">978</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Josef Fimpler<br>Thorsten Ortmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">989</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Patrick Ramm<br>Samir Allam</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">978</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Christian Huber<br>Igor Pagacz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">991</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Kilian Hodrus<br>Hermann Hodrus</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paul Scheffler <span class="oe">(890)</span><br>Finn Jonathan Gröning <span class="oe">(889)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">931</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paula Köppe <span class="oe">(1069)</span><br>Jonas Langwald <span class="oe">(1206)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+6</td><td class="elo">925</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Myrna Sieden <span class="oe">(1022)</span><br>Lena Bielfeldt <span class="oe">(823)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">938</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Sarah Walter <span class="oe">(966)</span><br>Valentina Schmitz <span class="oe">(969)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">949</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Christian Huber <span class="oe">(891)</span><br>Wladimir Bublitz <span class="oe">(959)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">963</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Katrin Leydel <span class="oe">(964)</span><br>Jürgen Leydel <span class="oe">(779)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">978</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Josef Fimpler <span class="oe">(982)</span><br>Thorsten Ortmann <span class="oe">(982)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">989</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Patrick Ramm <span class="oe">(988)</span><br>Samir Allam <span class="oe">(911)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">978</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Christian Huber <span class="oe">(931)</span><br>Igor Pagacz <span class="oe">(971)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">991</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Kilian Hodrus <span class="oe">(1147)</span><br>Hermann Hodrus <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -277,21 +281,21 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paul Scheffler<br>Finn Jonathan Gröning</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">931</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paula Köppe<br>Jonas Langwald</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+6</td><td class="elo">925</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Myrna Sieden<br>Lena Bielfeldt</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">938</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Sarah Walter<br>Valentina Schmitz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">949</td></tr>
-<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Christian Huber<br>Wladimir Bublitz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">963</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Katrin Leydel<br>Jürgen Leydel</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">978</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Josef Fimpler<br>Thorsten Ortmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">989</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Patrick Ramm<br>Samir Allam</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">978</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Christian Huber<br>Igor Pagacz</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">991</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Kilian Hodrus<br>Hermann Hodrus</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paul Scheffler <span class="oe">(890)</span><br>Finn Jonathan Gröning <span class="oe">(889)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">931</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Paula Köppe <span class="oe">(1069)</span><br>Jonas Langwald <span class="oe">(1206)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+6</td><td class="elo">925</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Myrna Sieden <span class="oe">(1022)</span><br>Lena Bielfeldt <span class="oe">(823)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">938</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Sarah Walter <span class="oe">(966)</span><br>Valentina Schmitz <span class="oe">(969)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">949</td></tr>
+<tr><td class="m-date">07.01.2026</td><td class="m-comp">1. MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Daniel Raider</td><td class="m-opp">Christian Huber <span class="oe">(891)</span><br>Wladimir Bublitz <span class="oe">(959)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">963</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Katrin Leydel <span class="oe">(964)</span><br>Jürgen Leydel <span class="oe">(779)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">978</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Josef Fimpler <span class="oe">(982)</span><br>Thorsten Ortmann <span class="oe">(982)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">989</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Patrick Ramm <span class="oe">(988)</span><br>Samir Allam <span class="oe">(911)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">978</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Christian Huber <span class="oe">(931)</span><br>Igor Pagacz <span class="oe">(971)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">991</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Kasra Ali</td><td class="m-opp">Kilian Hodrus <span class="oe">(1147)</span><br>Hermann Hodrus <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

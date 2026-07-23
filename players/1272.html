@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,13 +242,13 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Nicole Retzlaff<br>Zina Rupp</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">924</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Lena Meng<br>Sebastian Sommer</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">936</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Miriam Grunau<br>Bernd Grottke</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">947</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Luca Züwering<br>Alexander Zahn</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">960</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Felix Braun<br>Till Reiners</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">974</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Julia Voecks<br>Mandy Reimann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">989</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Peter Voigtländer<br>Lucas Neumann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Nicole Retzlaff <span class="oe">(934)</span><br>Zina Rupp <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">924</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Lena Meng <span class="oe">(941)</span><br>Sebastian Sommer <span class="oe">(955)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">936</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Miriam Grunau <span class="oe">(938)</span><br>Bernd Grottke <span class="oe">(941)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">947</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Luca Züwering <span class="oe">(922)</span><br>Alexander Zahn <span class="oe">(922)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">960</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Felix Braun <span class="oe">(875)</span><br>Till Reiners <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">974</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Julia Voecks <span class="oe">(980)</span><br>Mandy Reimann <span class="oe">(780)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">989</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Peter Voigtländer <span class="oe">(1027)</span><br>Lucas Neumann <span class="oe">(1034)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -274,18 +278,18 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Nicole Retzlaff<br>Zina Rupp</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">924</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Lena Meng<br>Sebastian Sommer</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">936</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Miriam Grunau<br>Bernd Grottke</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">947</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Luca Züwering<br>Alexander Zahn</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">960</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Felix Braun<br>Till Reiners</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">974</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Julia Voecks<br>Mandy Reimann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">989</td></tr>
-<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Peter Voigtländer<br>Lucas Neumann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Nicole Retzlaff <span class="oe">(934)</span><br>Zina Rupp <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">924</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Lena Meng <span class="oe">(941)</span><br>Sebastian Sommer <span class="oe">(955)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">936</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Miriam Grunau <span class="oe">(938)</span><br>Bernd Grottke <span class="oe">(941)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">947</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Luca Züwering <span class="oe">(922)</span><br>Alexander Zahn <span class="oe">(922)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">960</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Felix Braun <span class="oe">(875)</span><br>Till Reiners <span class="oe">(927)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-14</td><td class="elo">974</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Julia Voecks <span class="oe">(980)</span><br>Mandy Reimann <span class="oe">(780)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">989</td></tr>
+<tr><td class="m-date">02.11.2024</td><td class="m-comp">Kixx SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Mirco </td><td class="m-opp">Peter Voigtländer <span class="oe">(1027)</span><br>Lucas Neumann <span class="oe">(1034)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

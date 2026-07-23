@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,13 +242,13 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mandy Reimann<br>Mogos </td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">965</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mansool <br>Johannes Schlüter</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-10</td><td class="elo">976</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker<br>Max Matthiessen</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">962</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Joshua Supra<br>Christoph Rosemann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">971</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker<br>Max Matthiessen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Janis Zisenis<br>David Hansen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-6</td><td class="elo">989</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Rouven v. Elling<br>Oliver Behncke</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mandy Reimann <span class="oe">(868)</span><br>Mogos  <span class="oe">(795)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">965</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mansool  <span class="oe">(985)</span><br>Johannes Schlüter <span class="oe">(985)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-10</td><td class="elo">976</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker <span class="oe">(960)</span><br>Max Matthiessen <span class="oe">(1012)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">962</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Joshua Supra <span class="oe">(1059)</span><br>Christoph Rosemann <span class="oe">(998)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">971</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker <span class="oe">(923)</span><br>Max Matthiessen <span class="oe">(975)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Janis Zisenis <span class="oe">(1198)</span><br>David Hansen <span class="oe">(1076)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-6</td><td class="elo">989</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Rouven v. Elling <span class="oe">(989)</span><br>Oliver Behncke <span class="oe">(997)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -274,18 +278,18 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mandy Reimann<br>Mogos </td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">965</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mansool <br>Johannes Schlüter</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-10</td><td class="elo">976</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker<br>Max Matthiessen</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">962</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Joshua Supra<br>Christoph Rosemann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">971</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker<br>Max Matthiessen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Janis Zisenis<br>David Hansen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-6</td><td class="elo">989</td></tr>
-<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Rouven v. Elling<br>Oliver Behncke</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mandy Reimann <span class="oe">(868)</span><br>Mogos  <span class="oe">(795)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">965</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Mansool  <span class="oe">(985)</span><br>Johannes Schlüter <span class="oe">(985)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-10</td><td class="elo">976</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker <span class="oe">(960)</span><br>Max Matthiessen <span class="oe">(1012)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">962</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Joshua Supra <span class="oe">(1059)</span><br>Christoph Rosemann <span class="oe">(998)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">971</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Lukas Walker <span class="oe">(923)</span><br>Max Matthiessen <span class="oe">(975)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">983</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Janis Zisenis <span class="oe">(1198)</span><br>David Hansen <span class="oe">(1076)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-6</td><td class="elo">989</td></tr>
+<tr><td class="m-date">29.03.2025</td><td class="m-comp">Kixx SaDO</td><td class="m-type">Doppel</td><td class="m-partner">Stefan Bigalke</td><td class="m-opp">Rouven v. Elling <span class="oe">(989)</span><br>Oliver Behncke <span class="oe">(997)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

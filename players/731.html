@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,11 +242,11 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Sören Schlotfeldt<br>Jan Eschweiler-Voecks</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">953</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Nikolaus Wesner<br>Fujia Li</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">966</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Paul Huerkamp<br>Hans Engeln</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">979</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Marcus Fleck<br>Nadine Fleck</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Zina Rupp<br>Arno Nym</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Sören Schlotfeldt <span class="oe">(1103)</span><br>Jan Eschweiler-Voecks <span class="oe">(1107)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">953</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Nikolaus Wesner <span class="oe">(940)</span><br>Fujia Li <span class="oe">(940)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">966</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Paul Huerkamp <span class="oe">(949)</span><br>Hans Engeln <span class="oe">(949)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">979</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Marcus Fleck <span class="oe">(1336)</span><br>Nadine Fleck <span class="oe">(939)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Zina Rupp <span class="oe">(843)</span><br>Arno Nym <span class="oe">(974)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -272,16 +276,16 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Sören Schlotfeldt<br>Jan Eschweiler-Voecks</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">953</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Nikolaus Wesner<br>Fujia Li</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">966</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Paul Huerkamp<br>Hans Engeln</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">979</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Marcus Fleck<br>Nadine Fleck</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
-<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Zina Rupp<br>Arno Nym</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Sören Schlotfeldt <span class="oe">(1103)</span><br>Jan Eschweiler-Voecks <span class="oe">(1107)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">953</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Nikolaus Wesner <span class="oe">(940)</span><br>Fujia Li <span class="oe">(940)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">966</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Paul Huerkamp <span class="oe">(949)</span><br>Hans Engeln <span class="oe">(949)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">979</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Marcus Fleck <span class="oe">(1336)</span><br>Nadine Fleck <span class="oe">(939)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-7</td><td class="elo">985</td></tr>
+<tr><td class="m-date">27.08.2025</td><td class="m-comp">34. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jamshid Hashimi</td><td class="m-opp">Zina Rupp <span class="oe">(843)</span><br>Arno Nym <span class="oe">(974)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

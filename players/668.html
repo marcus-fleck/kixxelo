@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,12 +242,12 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Lars Schumann<br>Klaas Lohmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">977</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Michael Marcks<br>Lilli Moana Kessel</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">968</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Nina Oberthür<br>Nicole Retzlaff</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">970</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Jinjing Ge<br>Lars Thomsen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-4</td><td class="elo">974</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mirko Strunk<br>Marcel André Kiupel</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">987</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mandy Reimann<br>Sven Reepschläger</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Lars Schumann <span class="oe">(985)</span><br>Klaas Lohmann <span class="oe">(1133)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">977</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Michael Marcks <span class="oe">(933)</span><br>Lilli Moana Kessel <span class="oe">(871)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">968</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Nina Oberthür <span class="oe">(965)</span><br>Nicole Retzlaff <span class="oe">(826)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">970</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Jinjing Ge <span class="oe">(1157)</span><br>Lars Thomsen <span class="oe">(1352)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-4</td><td class="elo">974</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mirko Strunk <span class="oe">(972)</span><br>Marcel André Kiupel <span class="oe">(912)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">987</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mandy Reimann <span class="oe">(920)</span><br>Sven Reepschläger <span class="oe">(1016)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -273,17 +277,17 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Lars Schumann<br>Klaas Lohmann</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">977</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Michael Marcks<br>Lilli Moana Kessel</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">968</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Nina Oberthür<br>Nicole Retzlaff</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">970</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Jinjing Ge<br>Lars Thomsen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-4</td><td class="elo">974</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mirko Strunk<br>Marcel André Kiupel</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">987</td></tr>
-<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mandy Reimann<br>Sven Reepschläger</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Lars Schumann <span class="oe">(985)</span><br>Klaas Lohmann <span class="oe">(1133)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">977</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Michael Marcks <span class="oe">(933)</span><br>Lilli Moana Kessel <span class="oe">(871)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">968</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Nina Oberthür <span class="oe">(965)</span><br>Nicole Retzlaff <span class="oe">(826)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">970</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Jinjing Ge <span class="oe">(1157)</span><br>Lars Thomsen <span class="oe">(1352)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-4</td><td class="elo">974</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mirko Strunk <span class="oe">(972)</span><br>Marcel André Kiupel <span class="oe">(912)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">987</td></tr>
+<tr><td class="m-date">02.08.2025</td><td class="m-comp">Kixx SaDO & No-Pro SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Rainer Stange</td><td class="m-opp">Mandy Reimann <span class="oe">(920)</span><br>Sven Reepschläger <span class="oe">(1016)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-13</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,13 +242,13 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Anni Riedel<br>Nina Berg</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1067</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Rikko Tüitjer<br>Alejandro Suárez Garcia</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1056</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Stefan Schöb<br>Philipp Gamper</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+5</td><td class="elo">1052</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jakob Bahrini<br>Abdullah Mariam</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">1035</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Semin Mensah<br>Lia Joham</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+19</td><td class="elo">1016</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Steven Rauser<br>Moritz Josten</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+21</td><td class="elo">995</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jan Nicolin<br>Mattes Bürk</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Anni Riedel <span class="oe">(1010)</span><br>Nina Berg <span class="oe">(1010)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1067</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Rikko Tüitjer <span class="oe">(1028)</span><br>Alejandro Suárez Garcia <span class="oe">(1010)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1056</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Stefan Schöb <span class="oe">(1217)</span><br>Philipp Gamper <span class="oe">(1201)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+5</td><td class="elo">1052</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jakob Bahrini <span class="oe">(1025)</span><br>Abdullah Mariam <span class="oe">(1394)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">1035</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Semin Mensah <span class="oe">(1378)</span><br>Lia Joham <span class="oe">(1127)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+19</td><td class="elo">1016</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Steven Rauser <span class="oe">(1204)</span><br>Moritz Josten <span class="oe">(1485)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+21</td><td class="elo">995</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jan Nicolin <span class="oe">(1003)</span><br>Mattes Bürk <span class="oe">(1495)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -274,18 +278,18 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Anni Riedel<br>Nina Berg</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1067</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Rikko Tüitjer<br>Alejandro Suárez Garcia</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1056</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Stefan Schöb<br>Philipp Gamper</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+5</td><td class="elo">1052</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jakob Bahrini<br>Abdullah Mariam</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">1035</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Semin Mensah<br>Lia Joham</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+19</td><td class="elo">1016</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Steven Rauser<br>Moritz Josten</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+21</td><td class="elo">995</td></tr>
-<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jan Nicolin<br>Mattes Bürk</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Anni Riedel <span class="oe">(1010)</span><br>Nina Berg <span class="oe">(1010)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1067</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Rikko Tüitjer <span class="oe">(1028)</span><br>Alejandro Suárez Garcia <span class="oe">(1010)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+10</td><td class="elo">1056</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Stefan Schöb <span class="oe">(1217)</span><br>Philipp Gamper <span class="oe">(1201)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+5</td><td class="elo">1052</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jakob Bahrini <span class="oe">(1025)</span><br>Abdullah Mariam <span class="oe">(1394)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">1035</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Semin Mensah <span class="oe">(1378)</span><br>Lia Joham <span class="oe">(1127)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+19</td><td class="elo">1016</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Steven Rauser <span class="oe">(1204)</span><br>Moritz Josten <span class="oe">(1485)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+21</td><td class="elo">995</td></tr>
+<tr><td class="m-date">18.03.2026</td><td class="m-comp">11. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Jakob Bigalke</td><td class="m-opp">Jan Nicolin <span class="oe">(1003)</span><br>Mattes Bürk <span class="oe">(1495)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-5</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

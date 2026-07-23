@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,14 +242,14 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Celine Hofer<br>Konstantin Tobisch-Haupt</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1088</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Steven Rauser<br>Mandy Reimann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1079</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Anne Schadt<br>Jannek Mielke</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1074</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Lars Porrmann<br>Janis Zisenis</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1062</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Kilian Hodrus<br>Viktor Vasilev</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">1048</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Jan-Hendrik Wolf<br>Richard Günther</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+14</td><td class="elo">1034</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Sven Decken<br>Artur Lerm</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1018</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Daniel Jungblut<br>Bela Günther</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+18</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Celine Hofer <span class="oe">(1064)</span><br>Konstantin Tobisch-Haupt <span class="oe">(1171)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1088</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Steven Rauser <span class="oe">(1243)</span><br>Mandy Reimann <span class="oe">(933)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1079</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Anne Schadt <span class="oe">(949)</span><br>Jannek Mielke <span class="oe">(1003)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1074</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Lars Porrmann <span class="oe">(1038)</span><br>Janis Zisenis <span class="oe">(1346)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1062</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Kilian Hodrus <span class="oe">(1179)</span><br>Viktor Vasilev <span class="oe">(1241)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">1048</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Jan-Hendrik Wolf <span class="oe">(1301)</span><br>Richard Günther <span class="oe">(1151)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+14</td><td class="elo">1034</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Sven Decken <span class="oe">(1178)</span><br>Artur Lerm <span class="oe">(1359)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1018</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Daniel Jungblut <span class="oe">(1328)</span><br>Bela Günther <span class="oe">(1307)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+18</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -275,19 +279,19 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Celine Hofer<br>Konstantin Tobisch-Haupt</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1088</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Steven Rauser<br>Mandy Reimann</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1079</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Anne Schadt<br>Jannek Mielke</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1074</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Lars Porrmann<br>Janis Zisenis</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1062</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Kilian Hodrus<br>Viktor Vasilev</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">1048</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Jan-Hendrik Wolf<br>Richard Günther</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+14</td><td class="elo">1034</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Sven Decken<br>Artur Lerm</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1018</td></tr>
-<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Daniel Jungblut<br>Bela Günther</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+18</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Celine Hofer <span class="oe">(1064)</span><br>Konstantin Tobisch-Haupt <span class="oe">(1171)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1088</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Steven Rauser <span class="oe">(1243)</span><br>Mandy Reimann <span class="oe">(933)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1079</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Anne Schadt <span class="oe">(949)</span><br>Jannek Mielke <span class="oe">(1003)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+5</td><td class="elo">1074</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Lars Porrmann <span class="oe">(1038)</span><br>Janis Zisenis <span class="oe">(1346)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1062</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Kilian Hodrus <span class="oe">(1179)</span><br>Viktor Vasilev <span class="oe">(1241)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+13</td><td class="elo">1048</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Jan-Hendrik Wolf <span class="oe">(1301)</span><br>Richard Günther <span class="oe">(1151)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+14</td><td class="elo">1034</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Sven Decken <span class="oe">(1178)</span><br>Artur Lerm <span class="oe">(1359)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1018</td></tr>
+<tr><td class="m-date">10.09.2025</td><td class="m-comp">36. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Semin Mensah</td><td class="m-opp">Daniel Jungblut <span class="oe">(1328)</span><br>Bela Günther <span class="oe">(1307)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+18</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

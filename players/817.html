@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,14 +242,14 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Lucia Pedrielli<br>Selina Rauterberg</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+1</td><td class="elo">1036</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Justin Brammer<br>Nur Innie Brammer</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1023</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt<br>Lesley </td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1008</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt<br>Tanja Stoffregen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1016</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt<br>Lesley </td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">999</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck<br>Robin Weiß</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">982</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt<br>Tanja Stoffregen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">991</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck<br>Robin Weiß</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Lucia Pedrielli <span class="oe">(995)</span><br>Selina Rauterberg <span class="oe">(995)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+1</td><td class="elo">1036</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Justin Brammer <span class="oe">(966)</span><br>Nur Innie Brammer <span class="oe">(966)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1023</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt <span class="oe">(1150)</span><br>Lesley  <span class="oe">(960)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1008</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt <span class="oe">(1024)</span><br>Tanja Stoffregen <span class="oe">(1024)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1016</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt <span class="oe">(1182)</span><br>Lesley  <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">999</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck <span class="oe">(1073)</span><br>Robin Weiß <span class="oe">(1073)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">982</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt <span class="oe">(993)</span><br>Tanja Stoffregen <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">991</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck <span class="oe">(1003)</span><br>Robin Weiß <span class="oe">(1003)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -275,19 +279,19 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Lucia Pedrielli<br>Selina Rauterberg</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+1</td><td class="elo">1036</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Justin Brammer<br>Nur Innie Brammer</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1023</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt<br>Lesley </td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1008</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt<br>Tanja Stoffregen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1016</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt<br>Lesley </td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">999</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck<br>Robin Weiß</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">982</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt<br>Tanja Stoffregen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">991</td></tr>
-<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck<br>Robin Weiß</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Lucia Pedrielli <span class="oe">(995)</span><br>Selina Rauterberg <span class="oe">(995)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change pos">+1</td><td class="elo">1036</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Justin Brammer <span class="oe">(966)</span><br>Nur Innie Brammer <span class="oe">(966)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1023</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt <span class="oe">(1150)</span><br>Lesley  <span class="oe">(960)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+16</td><td class="elo">1008</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt <span class="oe">(1024)</span><br>Tanja Stoffregen <span class="oe">(1024)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1016</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Konstantin Tobisch-Haupt <span class="oe">(1182)</span><br>Lesley  <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">999</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck <span class="oe">(1073)</span><br>Robin Weiß <span class="oe">(1073)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+17</td><td class="elo">982</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Silke Schmidt <span class="oe">(993)</span><br>Tanja Stoffregen <span class="oe">(993)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">991</td></tr>
+<tr><td class="m-date">25.10.2025</td><td class="m-comp">Kixx SaDo & No-Pro-SaDo</td><td class="m-type">Doppel</td><td class="m-partner">Léo Overbeck</td><td class="m-opp">Paul Kolbeck <span class="oe">(1003)</span><br>Robin Weiß <span class="oe">(1003)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-9</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>

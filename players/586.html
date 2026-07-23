@@ -79,7 +79,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -188,7 +192,7 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
     <div class="inner">
       <h1>ELO RANGLISTE</h1>
       <span class="sub">KIXX Hamburg</span>
-      <span class="timestamp">Stand: 23.07.2026 21:50</span>
+      <span class="timestamp">Stand: 23.07.2026 22:06</span>
     </div>
   </header>
 
@@ -238,15 +242,15 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Rastagar<br>Ali Anik</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Wiebke von Osten<br>Julia Voecks</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-1</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Henner Rüschmeier<br>David Seeherr</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">1014</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Bengt Hanig<br>Luca Derksen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1028</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Thilo Norden<br>Milan Paul</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">1040</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Michael Prinz<br>Svenja Tüitjer</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1028</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Dagmar Dubberstein<br>Fredrik Winkler</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1020</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Scheffler<br>Jan-Hendrik Ehlers</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Lars Porrmann<br>Valentina Schmitz</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Rastagar <span class="oe">(842)</span><br>Ali Anik <span class="oe">(948)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Wiebke von Osten <span class="oe">(1105)</span><br>Julia Voecks <span class="oe">(884)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-1</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Henner Rüschmeier <span class="oe">(939)</span><br>David Seeherr <span class="oe">(960)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">1014</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Bengt Hanig <span class="oe">(950)</span><br>Luca Derksen <span class="oe">(902)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1028</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Thilo Norden <span class="oe">(981)</span><br>Milan Paul <span class="oe">(1083)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">1040</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Michael Prinz <span class="oe">(1088)</span><br>Svenja Tüitjer <span class="oe">(1002)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1028</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Dagmar Dubberstein <span class="oe">(811)</span><br>Fredrik Winkler <span class="oe">(1008)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1020</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Scheffler <span class="oe">(881)</span><br>Jan-Hendrik Ehlers <span class="oe">(967)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Lars Porrmann <span class="oe">(974)</span><br>Valentina Schmitz <span class="oe">(1013)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -276,20 +280,20 @@ footer { margin-top: 50px; padding: 22px 0; border-top: 1px solid var(--border);
       <div class="table-responsive">
       <table>
         <thead><tr><th>Datum</th><th>Turnier</th><th>Art</th><th>Partner</th><th>Gegner</th><th class="num">Erg.</th><th class="num">ELO Δ</th><th class="num">ELO</th></tr></thead>
-        <tbody><tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Rastagar<br>Ali Anik</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Wiebke von Osten<br>Julia Voecks</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-1</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Henner Rüschmeier<br>David Seeherr</td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">1014</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Bengt Hanig<br>Luca Derksen</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1028</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Thilo Norden<br>Milan Paul</td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">1040</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Michael Prinz<br>Svenja Tüitjer</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1028</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Dagmar Dubberstein<br>Fredrik Winkler</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1020</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Scheffler<br>Jan-Hendrik Ehlers</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1011</td></tr>
-<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Lars Porrmann<br>Valentina Schmitz</td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">1000</td></tr></tbody>
+        <tbody><tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Rastagar <span class="oe">(842)</span><br>Ali Anik <span class="oe">(948)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Wiebke von Osten <span class="oe">(1105)</span><br>Julia Voecks <span class="oe">(884)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-1</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Henner Rüschmeier <span class="oe">(939)</span><br>David Seeherr <span class="oe">(960)</span></td><td class="m-res num" style="color:var(--muted)">=</td><td class="change neg">-2</td><td class="elo">1014</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Bengt Hanig <span class="oe">(950)</span><br>Luca Derksen <span class="oe">(902)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-15</td><td class="elo">1028</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Thilo Norden <span class="oe">(981)</span><br>Milan Paul <span class="oe">(1083)</span></td><td class="m-res num" style="color:var(--down)">✗</td><td class="change neg">-12</td><td class="elo">1040</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Michael Prinz <span class="oe">(1088)</span><br>Svenja Tüitjer <span class="oe">(1002)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+12</td><td class="elo">1028</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Dagmar Dubberstein <span class="oe">(811)</span><br>Fredrik Winkler <span class="oe">(1008)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+8</td><td class="elo">1020</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Paul Scheffler <span class="oe">(881)</span><br>Jan-Hendrik Ehlers <span class="oe">(967)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+9</td><td class="elo">1011</td></tr>
+<tr><td class="m-date">18.06.2025</td><td class="m-comp">24. Kixx MiDo</td><td class="m-type">Doppel</td><td class="m-partner">Vassili Stavrou</td><td class="m-opp">Lars Porrmann <span class="oe">(974)</span><br>Valentina Schmitz <span class="oe">(1013)</span></td><td class="m-res num" style="color:var(--up)">✓</td><td class="change pos">+11</td><td class="elo">1000</td></tr></tbody>
       </table></div>
     </div>
   </div>
 
-  <footer>KIXX ELO Rangliste · generiert 23.07.2026 21:50</footer>
+  <footer>KIXX ELO Rangliste · generiert 23.07.2026 22:06</footer>
 </div>
 
 <script>
