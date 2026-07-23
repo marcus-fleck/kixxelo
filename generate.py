@@ -97,7 +97,11 @@ header .sub { color: var(--muted); font-size: 0.85rem; }
 .m-comp  { color: var(--muted); font-size: 0.74rem; }   /* darf umbrechen */
 .m-type  { color: var(--muted); white-space: nowrap; }
 .m-partner {}                                            /* darf umbrechen */
+/* Notbremse: überlange Namen brechen um, statt die Tabelle zu verbreitern */
+.m-comp, .m-partner, .m-opp { overflow-wrap: anywhere; }
 .m-opp   { line-height: 1.35; }                          /* nutzt <br> */
+/* Gegner-ELO zum Zeitpunkt des Spiels: dezent, darf bei Platznot umbrechen */
+.m-opp .oe { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 .m-res   { text-align: right; font-weight: 700; white-space: nowrap; }
 .table-responsive .change { white-space: nowrap; }
 .table-responsive td.elo { font-size: 1rem; letter-spacing: 0; }
@@ -276,6 +280,27 @@ def get_recent_matches(player_id, limit=30, match_type=None):
     else:
         pmap = {}
 
+    # ELO der Beteiligten VOR dem jeweiligen Spiel: rating ist der Wert NACH
+    # dem Spiel, also rating - change.
+    elo_before = {}
+    match_ids = {r['id'] for r in rows}
+    if match_ids:
+        ph = ','.join('?' * len(match_ids))
+        cur.execute(f"""
+            SELECT pm.match_id, pm.player_id, (es.rating - es.change) AS elo_before
+            FROM played_matches pm
+            JOIN elo_separate es ON es.played_match_id = pm.id
+            WHERE pm.match_id IN ({ph})
+        """, list(match_ids))
+        for r in cur.fetchall():
+            elo_before[(r['match_id'], r['player_id'])] = r['elo_before']
+
+    def opp(match_id, opponent_id):
+        return {
+            'name': pmap.get(opponent_id, '?'),
+            'elo': elo_before.get((match_id, opponent_id)),
+        }
+
     result = []
     for r in rows:
         pid = player_id
@@ -289,18 +314,18 @@ def get_recent_matches(player_id, limit=30, match_type=None):
 
         if r['type'] == 1:
             if on_side1:
-                partners, opponents = [], [pmap.get(r['p2'], '?')]
+                partners, opponents = [], [opp(r['id'], r['p2'])]
             else:
-                partners, opponents = [], [pmap.get(r['p1'], '?')]
+                partners, opponents = [], [opp(r['id'], r['p1'])]
         else:
             if on_side1:
                 partner_id = r['p11'] if r['p1'] == pid else r['p1']
                 partners = [pmap.get(partner_id, '?')]
-                opponents = [pmap.get(r['p2'], '?'), pmap.get(r['p22'], '?')]
+                opponents = [opp(r['id'], r['p2']), opp(r['id'], r['p22'])]
             else:
                 partner_id = r['p22'] if r['p2'] == pid else r['p2']
                 partners = [pmap.get(partner_id, '?')]
-                opponents = [pmap.get(r['p1'], '?'), pmap.get(r['p11'], '?')]
+                opponents = [opp(r['id'], r['p1']), opp(r['id'], r['p11'])]
 
         result.append({
             'date': f"{r['day']:02d}.{r['month']:02d}.{r['year']}",
@@ -527,7 +552,13 @@ for pid, elo_row in elo_all.items():
             else:
                 result_str, result_color = '✗', 'var(--down)'
             partner_str = ', '.join(m['partners']) if m['partners'] else '–'
-            opponent_str = '<br>'.join(m['opponents'])
+            opp_parts = []
+            for o in m['opponents']:
+                if o['elo'] is not None:
+                    opp_parts.append(f'{o["name"]} <span class="oe">({o["elo"]})</span>')
+                else:
+                    opp_parts.append(o['name'])
+            opponent_str = '<br>'.join(opp_parts)
             comp_short = m['comp'].replace('Offenes Doppel', 'OD').replace('Offenes Einzel', 'OE')
             parts.append(
                 f'<tr>'
